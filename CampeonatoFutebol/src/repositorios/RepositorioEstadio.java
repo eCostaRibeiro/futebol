@@ -34,4 +34,9 @@ public class RepositorioEstadio {
         //Fazer a lógica
         listaEstadio.add(etd);
     }
+    
+    public ArrayList<Estadio> obterListaEstadio() {
+        
+        return listaEstadio;
+    }
 }

@@ -4,21 +4,64 @@
  */
 package telasConsulta;
 
+import campeonatofutebol.Campeonato;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import repositorios.RepositorioCampeonato;
 import telasCadastro.MenuPrincipal;
+
 
 /**
  *
  * @author Renan
  */
 public class ConsultaCampeonato extends javax.swing.JFrame {
-   
+   private MenuPrincipal telaPrincipal;
     /**
      * Creates new form ConsultaCampeonato
      */
-    public ConsultaCampeonato() {
+    private ConsultaCampeonato() {
         initComponents();
+        
+        carregarJTable();
+    }
+    
+    public ConsultaCampeonato (MenuPrincipal telaPrincipal) {
+        this();
+        
+        this.telaPrincipal = telaPrincipal;
     }
 
+       
+    private void carregarJTable() {
+        ArrayList<Campeonato> lista = RepositorioCampeonato.getInstance().obterListaCampeonato();
+        
+        DefaultTableModel modelo = new javax.swing.table.DefaultTableModel();
+        modelo.addColumn("Código");
+        modelo.addColumn("Nome");
+        modelo.addColumn("Ano");
+        
+        if (lista.size() == 0) {
+            modelo.addRow(new String [] {"Sem Dados",
+                null,
+                null,
+                null});
+        }
+        
+        for (int i = 0; i < lista.size(); i++) {
+            Campeonato camp = lista.get(i);
+            
+            //Alimenta as linhas de dados
+            modelo.addRow(new String[] {Integer.toString(camp.getCodCamp()),
+                camp.getNomeCamp() + "",
+                camp.getAnoCamp() + ""});
+        }
+        
+        jTable1.setModel(modelo);
+        
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -29,13 +72,6 @@ public class ConsultaCampeonato extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jSeparator1 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
@@ -47,18 +83,6 @@ public class ConsultaCampeonato extends javax.swing.JFrame {
                 formWindowClosed(evt);
             }
         });
-
-        jLabel1.setText("Código:");
-
-        jLabel2.setText("Nome:");
-
-        jLabel3.setText("Ano:");
-
-        jTextField1.setToolTipText("Código para pesquisar");
-
-        jTextField2.setToolTipText("Ano para pesquisa");
-
-        jTextField3.setToolTipText("Nome para pesquisar");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -84,24 +108,11 @@ public class ConsultaCampeonato extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField3))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton1)))
                 .addContainerGap())
@@ -109,21 +120,9 @@ public class ConsultaCampeonato extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addContainerGap())
         );
@@ -137,7 +136,10 @@ public class ConsultaCampeonato extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-
+        this.telaPrincipal.setEnabled(true);
+        
+        // NOVO CODIGO
+        this.telaPrincipal.toFront();
     }//GEN-LAST:event_formWindowClosed
 
     /**
@@ -183,14 +185,7 @@ public class ConsultaCampeonato extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
 }

@@ -34,4 +34,9 @@ public class RepositorioTime {
         //Fazer a lógica
         listaTime.add(time);
     }
+    
+    public ArrayList<Time> obterListaTime() {
+        
+        return listaTime;
+    }
 }
