@@ -19,7 +19,8 @@ public class ControleEstadio {
         if (etd != null && etd.getCodEstadio()!= 0 &&
                 etd.getNomeEstadio().length()>0); {
         
-        //Pronto para cadastrar
+        repositorios.RepositorioEstadio.getInstance().cadastrarEstadio(etd);
+        
         result = true;
         
     }
