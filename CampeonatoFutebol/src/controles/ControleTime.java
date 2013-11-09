@@ -19,7 +19,8 @@ public class ControleTime {
         if (time != null && time.getCodTime() != 0 &&
                 time.getNomeTime().length()>0); {
         
-        //Pronto para cadastrar
+        repositorios.RepositorioTime.getInstance().cadastrarTime(time);
+        
         result = true;
         
     }

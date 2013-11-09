@@ -12,6 +12,7 @@ import campeonatofutebol.Campeonato;
  */
 //<editor-fold defaultstate="collapsed" desc="Controle da Classe Campeonato">
 public class ControleCampeonato {
+    
     public boolean cadastrarCampeonato (Campeonato camp){
         
         boolean result = false;
@@ -19,7 +20,8 @@ public class ControleCampeonato {
         if (camp != null && camp.getCodCamp()!= 0 &&
                 camp.getNomeCamp().length()>0 && camp.getAnoCamp() != 0); {
         
-        //Pronto para cadastrar
+        repositorios.RepositorioCampeonato.getInstance().cadastrarCampeonato(camp);
+        
         result = true;
         
     }

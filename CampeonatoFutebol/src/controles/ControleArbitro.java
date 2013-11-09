@@ -18,8 +18,9 @@ public class ControleArbitro {
         
         if (arb != null && arb.getCodArbitro()!= 0 &&
                 arb.getNomeArbitro().length()>0); {
+                
+        repositorios.RepositorioArbitro.getInstance().cadastrarArbitro(arb);
         
-        //Pronto para cadastrar
         result = true;
         
     }

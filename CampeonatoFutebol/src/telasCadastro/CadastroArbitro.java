@@ -56,6 +56,11 @@ public class CadastroArbitro extends javax.swing.JFrame {
         jLabel2.setText("Nome:");
 
         jcodArbitro.setToolTipText("Código Arbitro");
+        jcodArbitro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcodArbitroActionPerformed(evt);
+            }
+        });
 
         jnomeArbitro.setToolTipText("Nome do Arbitro");
 
@@ -150,6 +155,10 @@ public class CadastroArbitro extends javax.swing.JFrame {
             
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jcodArbitroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcodArbitroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcodArbitroActionPerformed
 
     /**
      * @param args the command line arguments
