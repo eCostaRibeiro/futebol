@@ -233,27 +233,33 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // Tela de consulta do Campeonato
+        this.setEnabled(false);
         
-        new ConsultaCampeonato().setVisible(true);
+        new ConsultaCampeonato(this).setVisible(true);
+        
+        //new ConsultaCampeonato().setVisible(true);
         
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         // Tela de consulta do Arbitro
+        this.setEnabled(false);
         
-        new ConsultaArbitro().setVisible(true);
+        new ConsultaArbitro(this).setVisible(true);
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
        // Tela de consulta do Estadio
+        this.setEnabled(false);
         
-        new ConsultaEstadio().setVisible(true);
+        new ConsultaEstadio(this).setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // Tela de consulta do Time
+        this.setEnabled(false);
         
-        new ConsultaTime().setVisible(true);
+        new ConsultaTime(this).setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     /**

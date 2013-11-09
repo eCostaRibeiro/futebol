@@ -34,4 +34,9 @@ public class RepositorioJogador {
         //Fazer a lógica
         listaJogador.add(joga);
     }
+    
+    public ArrayList<Jogador> obterListaJogador() {
+        
+        return listaJogador;
+    }
 }

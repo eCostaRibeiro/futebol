@@ -35,4 +35,9 @@ public class RepositorioArbitro {
         //Fazer a lógica
         listaArbitro.add(arb);
     }
+    
+    public ArrayList<Arbitro> obterListaArbitro() {
+        
+        return listaArbitro;
+    }
 }

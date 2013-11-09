@@ -36,4 +36,9 @@ public class RepositorioCampeonato {
         //Fazer a lógica
         listaCampeonato.add(camp);
     }
+    
+    public ArrayList<Campeonato> obterListaCampeonato() {
+        
+        return listaCampeonato;
+    }
 }
