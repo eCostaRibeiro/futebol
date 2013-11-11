@@ -1,32 +1,40 @@
 package campeonatofutebol;
 
 public class Campeonato {
-    private int codCamp;
-    private int anoCamp;
+    private Integer codCamp;
+    private Integer anoCamp;
     private String nomeCamp;
 
     //<editor-fold defaultstate="collapsed" desc="Construtor">
-    public Campeonato(int codCamp, int anoCamp, String nomeCamp) {
+    public Campeonato(Integer codCamp, Integer anoCamp, String nomeCamp) {
         this.codCamp = codCamp;
         this.anoCamp = anoCamp;
         this.nomeCamp = nomeCamp;
     }
     //</editor-fold>
 
+    //<editor-fold defaultstate="collapsed" desc="Construtor Genérico">
+    public Campeonato() {
+        this.codCamp = null;
+        this.anoCamp = null;
+        this.nomeCamp = null;
+    }
+    //</editor-fold>
+
     //<editor-fold defaultstate="collapsed" desc="Getters e Setters">
-    public int getAnoCamp() {
+    public Integer getAnoCamp() {
         return anoCamp;
     }
     
-    public void setAnoCamp(int anoCamp) {
+    public void setAnoCamp(Integer anoCamp) {
         this.anoCamp = anoCamp;
     }
     
-    public int getCodCamp() {
+    public Integer getCodCamp() {
         return codCamp;
     }
     
-    public void setCodCamp(int codCamp) {
+    public void setCodCamp(Integer codCamp) {
         this.codCamp = codCamp;
     }
     

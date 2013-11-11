@@ -2,22 +2,29 @@
 package campeonatofutebol;
 
 public class Jogador {
-    private int codJogador;
+    private Integer codJogador;
     private String nomeJogador;
 
     //<editor-fold defaultstate="collapsed" desc="Construtor">
-    public Jogador(int codJogador, String nomeJogador) {
+    public Jogador(Integer codJogador, String nomeJogador) {
         this.codJogador = codJogador;
         this.nomeJogador = nomeJogador;
     }
     //</editor-fold>
 
+    //<editor-fold defaultstate="collapsed" desc="Construtor Genérico">
+    public Jogador() {
+        this.codJogador = null;
+        this.nomeJogador = null;
+    }
+    //</editor-fold>
+
     //<editor-fold defaultstate="collapsed" desc="Getters e Setters">
-    public int getCodJogador() {
+    public Integer getCodJogador() {
         return codJogador;
     }
     
-    public void setCodJogador(int codJogador) {
+    public void setCodJogador(Integer codJogador) {
         this.codJogador = codJogador;
     }
     

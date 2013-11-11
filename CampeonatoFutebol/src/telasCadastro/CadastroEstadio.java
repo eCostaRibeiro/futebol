@@ -138,12 +138,14 @@ public class CadastroEstadio extends javax.swing.JFrame {
             return;
         }
         // Criando objeto do Arbitro
-        Estadio etd = new Estadio (Integer.parseInt(jcodEstadio.getText()), jnomeEstadio.getText());
+        Estadio etd = new Estadio ();
         
         // Chamar o controle para tentar cadastrar
         ControleEstadio controle = new ControleEstadio();
         if (controle.cadastrarEstadio(etd)){
             JOptionPane.showMessageDialog (this, "Cadastrado com Sucesso!");
+            etd.setCodEstadio(Integer.parseInt(jcodEstadio.getText()));
+            etd.setNomeEstadio(jnomeEstadio.getText());
         
         }else {
             JOptionPane.showMessageDialog (this, "Falha no cadastro!");
