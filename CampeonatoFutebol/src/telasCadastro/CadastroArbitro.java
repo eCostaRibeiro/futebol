@@ -143,13 +143,15 @@ public class CadastroArbitro extends javax.swing.JFrame {
             return;
         }
         // Criando objeto do Arbitro
-        Arbitro arb = new Arbitro (Integer.parseInt(jcodArbitro.getText()), jnomeArbitro.getText());
+        Arbitro arb = new Arbitro ();
         
         // Chamar o controle para tentar cadastrar
         ControleArbitro controle = new ControleArbitro();
         if (controle.cadastrarArbitro(arb)){
             JOptionPane.showMessageDialog (this, "Cadastrado com Sucesso!");
-        
+            arb.setCodArbitro((Integer.parseInt(jcodArbitro.getText())));
+            arb.setNomeArbitro(jnomeArbitro.getText());
+                        
         }else {
             JOptionPane.showMessageDialog (this, "Falha no cadastro!");
             

@@ -166,13 +166,16 @@ public class CriarCampeonato extends javax.swing.JFrame {
             return;
         }
         // Criando objeto do Arbitro
-        Campeonato camp = new Campeonato (Integer.parseInt(jcodCamp.getText()), 
-                Integer.parseInt(janoCamp.getText()), jnomeCamp.getText());
+        Campeonato camp = new Campeonato ();
+                
         
         // Chamar o controle para tentar cadastrar
         ControleCampeonato controle = new ControleCampeonato();
         if (controle.cadastrarCampeonato(camp)){
             JOptionPane.showMessageDialog (this, "Cadastrado com Sucesso!");
+            camp.setCodCamp((Integer.parseInt(jcodCamp.getText())));
+            camp.setAnoCamp(Integer.parseInt(janoCamp.getText()));
+            camp.setNomeCamp(jnomeCamp.getText());
         
         }else {
             JOptionPane.showMessageDialog (this, "Falha no cadastro!");

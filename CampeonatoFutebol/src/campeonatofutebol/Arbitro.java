@@ -1,22 +1,29 @@
 package campeonatofutebol;
 
 public class Arbitro {
-    private int codArbitro;
+    private Integer codArbitro;
     private String nomeArbitro;
 
     //<editor-fold defaultstate="collapsed" desc="Construtor">
-    public Arbitro(int codArbitro, String nomeArbitro) {
+    public Arbitro(Integer codArbitro, String nomeArbitro) {
         this.codArbitro = codArbitro;
         this.nomeArbitro = nomeArbitro;
     }
     //</editor-fold>
 
+    //<editor-fold defaultstate="collapsed" desc="Construtor Genérico">
+    public Arbitro() {
+        this.codArbitro = null;
+        this.nomeArbitro = null;
+    }
+    //</editor-fold>
+
     //<editor-fold defaultstate="collapsed" desc="Getters e Setters">
-    public int getCodArbitro() {
+    public Integer getCodArbitro() {
         return codArbitro;
     }
     
-    public void setCodArbitro(int codArbitro) {
+    public void setCodArbitro(Integer codArbitro) {
         this.codArbitro = codArbitro;
     }
     

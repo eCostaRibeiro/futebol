@@ -27,7 +27,7 @@ public class TesteConectaNoXML {
         
         
         //apenas na primeira vez
-//        UsuarioOracle iniciaUsuario = new UsuarioOracle("jdbc:oracle:thin:@192.168.0.127:1521/orcl", "futebol", "futebol");
+//       UsuarioOracle iniciaUsuario = new UsuarioOracle("jdbc:oracle:thin:@192.168.0.235:1521/orcl", "futebol", "futebol");
 //        xml.gravaXML(iniciaUsuario);
         
         
