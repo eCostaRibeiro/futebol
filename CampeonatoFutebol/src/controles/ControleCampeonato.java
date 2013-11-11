@@ -17,7 +17,7 @@ public class ControleCampeonato {
         
         boolean result = false;
         
-        if (camp != null && camp.getCodCamp()!= 0 &&
+        if (camp == null && camp.getCodCamp()!= 0 &&
                 camp.getNomeCamp().length()>0 && camp.getAnoCamp() != 0); {
         
         repositorios.RepositorioCampeonato.getInstance().cadastrarCampeonato(camp);
