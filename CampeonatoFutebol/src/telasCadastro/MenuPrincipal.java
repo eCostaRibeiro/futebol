@@ -187,6 +187,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         
         // Tela de Cadastro de Jogador       
         new CadastroJogador(this).setVisible(true);
+        
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
@@ -195,6 +196,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         
         // Tela de Cadastro de Time
         new CadastroTime(this).setVisible(true);    
+        
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
@@ -203,6 +205,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         
         // Tela de Cadastro de Árbitro
         new CadastroArbitro(this).setVisible(true);
+        
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
@@ -211,6 +214,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         
         // Tela de Cadastro de Éstadio
         new CadastroEstadio(this).setVisible(true);
+        
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
@@ -229,37 +233,35 @@ public class MenuPrincipal extends javax.swing.JFrame {
         
         // Tela de Cadastro do Campeonato
         new CriarCampeonato(this).setVisible(true); 
+        
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // Tela de consulta do Campeonato
-        this.setEnabled(false);
         
         new ConsultaCampeonato(this).setVisible(true);
-        
-        //new ConsultaCampeonato().setVisible(true);
         
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         // Tela de consulta do Arbitro
-        this.setEnabled(false);
         
         new ConsultaArbitro(this).setVisible(true);
+        
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
        // Tela de consulta do Estadio
-        this.setEnabled(false);
         
         new ConsultaEstadio(this).setVisible(true);
+        
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // Tela de consulta do Time
-        this.setEnabled(false);
         
         new ConsultaTime(this).setVisible(true);
+        
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     /**

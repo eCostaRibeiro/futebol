@@ -138,12 +138,14 @@ public class CadastroTime extends javax.swing.JFrame {
             return;
         }
         // Criando objeto do Arbitro
-        Time time = new Time (Integer.parseInt(jcodTime.getText()), jnomeTime.getText());
+        Time time = new Time ();
         
         // Chamar o controle para tentar cadastrar
         ControleTime controle = new ControleTime();
         if (controle.cadastrarTime(time)){
             JOptionPane.showMessageDialog (this, "Cadastrado com Sucesso!");
+            time.setCodTime((Integer.parseInt(jcodTime.getText())));
+            time.setNomeTime(jnomeTime.getText());
         
         }else {
             JOptionPane.showMessageDialog (this, "Falha no cadastro!");
