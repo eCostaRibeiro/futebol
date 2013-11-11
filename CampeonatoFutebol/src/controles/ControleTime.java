@@ -16,7 +16,7 @@ public class ControleTime {
         
         boolean result = false;
         
-        if (time != null && time.getCodTime() != 0 &&
+        if (time == null && time.getCodTime() != 0 &&
                 time.getNomeTime().length()>0); {
         
         repositorios.RepositorioTime.getInstance().cadastrarTime(time);

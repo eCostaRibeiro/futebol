@@ -16,7 +16,7 @@ public class ControleJogador {
         
         boolean result = false;
         
-        if (joga != null && joga.getCodJogador()!= 0 &&
+        if (joga == null && joga.getCodJogador()!= 0 &&
                 joga.getNomeJogador().length()>0); {
         
         repositorios.RepositorioJogador.getInstance().cadastrarJogador(joga);
