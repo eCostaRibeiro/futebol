@@ -22,19 +22,19 @@ public class TesteConectaNoXML {
     public static void main(String[] args) throws SQLException {
         UsuarioOracle usuario;
         
-        UsaXML xml = new UsaXML();
+//        UsaXML xml = new UsaXML();
+//        
+//        
+//        
+//        //apenas na primeira vez
+////       UsuarioOracle iniciaUsuario = new UsuarioOracle("jdbc:oracle:thin:@192.168.0.235:1521/orcl", "futebol", "futebol");
+////        xml.gravaXML(iniciaUsuario);
+//        
+//        
+//        usuario = xml.leituraXML();     
         
         
-        
-        //apenas na primeira vez
-//       UsuarioOracle iniciaUsuario = new UsuarioOracle("jdbc:oracle:thin:@192.168.0.235:1521/orcl", "futebol", "futebol");
-//        xml.gravaXML(iniciaUsuario);
-        
-        
-        usuario = xml.leituraXML();     
-        
-        
-        try(Connection dbConecta = new ConexaoOracle().getConnection(usuario)){
+        try(Connection dbConecta = new ConexaoOracle().getConnection()){
             System.out.println("Oracle esta OK");
         }catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) {
             System.out.println("Nao foi possivel Conectar!! "+ e.getMessage());

@@ -14,11 +14,13 @@ import oracle.jdbc.pool.OracleDataSource;
 public class ConexaoOracle {
     private boolean conected;
     private UsuarioOracle usuario;
+    private UsaXML xml;
     Connection con;
 
-    public Connection getConnection(UsuarioOracle usuarioVar) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
-	this.conected = false;
-	this.usuario = usuarioVar;
+    public Connection getConnection() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+	this.xml = new UsaXML();
+        this.conected = false;
+	this.usuario = this.xml.leituraXML();
                 
         try{
             OracleDataSource ods = new OracleDataSource();
