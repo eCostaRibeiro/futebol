@@ -4,35 +4,35 @@
  */
 package telasConsulta;
 
-import campeonatofutebol.Jogador;
+import campeonatofutebol.Arbitro;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
-import repositorios.RepositorioJogador;
+import repositorios.RepositorioArbitro;
 import telasCadastro.MenuPrincipal;
 
 /**
  *
  * @author Renan
  */
-public class ConsultaJogador extends javax.swing.JFrame {
+public class ConsultaArbitro extends javax.swing.JFrame {
     private MenuPrincipal telaPrincipal;
     /**
      * Creates new form ConsultaJogador
      */
-    public ConsultaJogador() {
+    public ConsultaArbitro() {
         initComponents();
         
         carregarJTable();
     }
     
-    public ConsultaJogador (MenuPrincipal telaPrincipal) {
+    public ConsultaArbitro (MenuPrincipal telaPrincipal) {
         this();
         
         this.telaPrincipal = telaPrincipal;
     }
     
     private void carregarJTable() {
-        ArrayList<Jogador> lista = RepositorioJogador.getInstance().obterListaJogador();
+        ArrayList<Arbitro> lista = RepositorioArbitro.getInstance().obterListaArbitro();
         
         DefaultTableModel modelo = new javax.swing.table.DefaultTableModel();
         modelo.addColumn("Código");
@@ -45,11 +45,11 @@ public class ConsultaJogador extends javax.swing.JFrame {
         }
         
         for (int i = 0; i < lista.size(); i++) {
-            Jogador joga = lista.get(i);
+            Arbitro arb = lista.get(i);
             
             //Alimenta as linhas de dados
-            modelo.addRow(new String[] {Integer.toString(joga.getCodJogador()),
-                joga.getNomeJogador() + ""});
+            modelo.addRow(new String[] {Integer.toString(arb.getCodArbitro()),
+                arb.getNomeArbitro()+ ""});
         }
         
         jTable1.setModel(modelo);
@@ -144,13 +144,13 @@ public class ConsultaJogador extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ConsultaJogador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultaArbitro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ConsultaJogador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultaArbitro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ConsultaJogador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultaArbitro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ConsultaJogador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultaArbitro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -161,7 +161,7 @@ public class ConsultaJogador extends javax.swing.JFrame {
 
             @Override
             public void run() {
-                new ConsultaJogador().setVisible(true);
+                new ConsultaArbitro().setVisible(true);
             }
         });
     }
