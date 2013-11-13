@@ -4,6 +4,9 @@
  */
 package telasCadastro;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import telasConsulta.*;
 
 /**
@@ -43,6 +46,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenuItem14 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Futebol");
 
         jMenu1.setText("Menu");
 
@@ -164,11 +168,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 556, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
+            .addGap(0, 392, Short.MAX_VALUE)
         );
 
         pack();
@@ -202,9 +206,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
         // desabilitando tela atual para não ser clicável
         this.setEnabled(false);
-        
-        // Tela de Cadastro de Árbitro
-        new CadastroArbitro(this).setVisible(true);
+        try {
+            // Tela de Cadastro de Árbitro
+            new CadastroArbitro(this).setVisible(true);
+        } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
@@ -244,9 +251,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-        // Tela de consulta do Arbitro
-        
-        new ConsultaArbitro(this).setVisible(true);
+        try {
+            // Tela de consulta do Arbitro
+
+            new ConsultaArbitro(this).setVisible(true);
+        } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
@@ -300,6 +311,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
          */
         java.awt.EventQueue.invokeLater(new Runnable() {
 
+            @Override
             public void run() {
                 new MenuPrincipal().setVisible(true);
             }
