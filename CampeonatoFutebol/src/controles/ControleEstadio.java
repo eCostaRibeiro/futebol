@@ -12,8 +12,10 @@ import campeonatofutebol.Estadio;
  */
 //<editor-fold defaultstate="collapsed" desc="Classe de controle Estadio">
 public class ControleEstadio {
+    @SuppressWarnings({"empty-statement", "null"})
     public boolean cadastrarEstadio (Estadio etd){
         
+        @SuppressWarnings("UnusedAssignment")
         boolean result = false;
         
         if (etd == null && etd.getCodEstadio()!= 0 &&

@@ -5,6 +5,8 @@
 package repositorios;
 
 import campeonatofutebol.Estadio;
+import classesDAO.EstadioDAO;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -16,7 +18,7 @@ public class RepositorioEstadio {
     ArrayList<Estadio> listaEstadio;
     
     private RepositorioEstadio() {
-        listaEstadio = new ArrayList<Estadio>();
+        listaEstadio = new ArrayList<>();
     }
     
     // singleton
@@ -35,8 +37,9 @@ public class RepositorioEstadio {
         listaEstadio.add(etd);
     }
     
-    public ArrayList<Estadio> obterListaEstadio() {
-        
+    public ArrayList<Estadio> obterListaEstadio() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+        EstadioDAO consulta = new EstadioDAO();
+        listaEstadio = consulta.select();
         return listaEstadio;
     }
 }

@@ -5,6 +5,8 @@
 package repositorios;
 
 import campeonatofutebol.Arbitro;
+import classesDAO.ArbitroDAO;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -16,8 +18,8 @@ public class RepositorioArbitro {
     private static RepositorioArbitro instance;
     ArrayList<Arbitro> listaArbitro;
     
-    private RepositorioArbitro() {
-        listaArbitro = new ArrayList<Arbitro>();
+    public RepositorioArbitro() {
+        listaArbitro = new ArrayList<>();
     }
     
     // singleton
@@ -36,8 +38,9 @@ public class RepositorioArbitro {
         listaArbitro.add(arb);
     }
     
-    public ArrayList<Arbitro> obterListaArbitro() {
-        
+    public ArrayList<Arbitro> obterListaArbitro() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+        ArbitroDAO consulta = new ArbitroDAO();
+        listaArbitro = consulta.select();
         return listaArbitro;
     }
 }

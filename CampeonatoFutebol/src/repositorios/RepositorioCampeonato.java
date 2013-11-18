@@ -5,6 +5,8 @@
 package repositorios;
 
 import campeonatofutebol.Campeonato;
+import classesDAO.CampeonatoDAO;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 
@@ -18,7 +20,7 @@ public class RepositorioCampeonato {
     ArrayList<Campeonato> listaCampeonato;
     
     private RepositorioCampeonato() {
-        listaCampeonato = new ArrayList<Campeonato>();
+        listaCampeonato = new ArrayList<>();
     }
     
     // singleton
@@ -37,8 +39,9 @@ public class RepositorioCampeonato {
         listaCampeonato.add(camp);
     }
     
-    public ArrayList<Campeonato> obterListaCampeonato() {
-        
+    public ArrayList<Campeonato> obterListaCampeonato() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+        CampeonatoDAO consulta = new CampeonatoDAO();
+        listaCampeonato = consulta.select();
         return listaCampeonato;
     }
 }

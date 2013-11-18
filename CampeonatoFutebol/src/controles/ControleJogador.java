@@ -12,8 +12,10 @@ import campeonatofutebol.Jogador;
  */
 //<editor-fold defaultstate="collapsed" desc="Classe de controle Jogador">
 public class ControleJogador {
+    @SuppressWarnings({"empty-statement", "null"})
     public boolean cadastrarJogador (Jogador joga){
         
+        @SuppressWarnings("UnusedAssignment")
         boolean result = false;
         
         if (joga == null && joga.getCodJogador()!= 0 &&

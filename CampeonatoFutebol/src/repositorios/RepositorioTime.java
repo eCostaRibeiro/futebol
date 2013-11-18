@@ -5,6 +5,8 @@
 package repositorios;
 
 import campeonatofutebol.Time;
+import classesDAO.TimeDAO;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -16,7 +18,7 @@ public class RepositorioTime {
     ArrayList<Time> listaTime;
     
     private RepositorioTime() {
-        listaTime = new ArrayList<Time>();
+        listaTime = new ArrayList<>();
     }
     
     // singleton
@@ -35,8 +37,9 @@ public class RepositorioTime {
         listaTime.add(time);
     }
     
-    public ArrayList<Time> obterListaTime() {
-        
+    public ArrayList<Time> obterListaTime() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+        TimeDAO consulta = new TimeDAO();
+        listaTime = consulta.select();
         return listaTime;
     }
 }

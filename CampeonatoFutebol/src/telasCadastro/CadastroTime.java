@@ -5,7 +5,11 @@
 package telasCadastro;
 
 import campeonatofutebol.Time;
+import classesDAO.TimeDAO;
 import controles.ControleTime;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -122,36 +126,33 @@ public class CadastroTime extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // Botão Cancelar
-        this.dispose();
         telaAnterior.setEnabled(true);
+        this.dispose();
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        //letura dos campos
         String codTime = jcodTime.getText();
         String nomeTime = jnomeTime.getText();
        
+        Time time = new Time();
+        
         try {
-            Integer ca = Integer.parseInt(codTime);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog (this, 
-                    "Falha no cadastro do código!");
-            return;
-        }
-        // Criando objeto do Arbitro
-        Time time = new Time ();
-        
-        // Chamar o controle para tentar cadastrar
-        ControleTime controle = new ControleTime();
-        if (controle.cadastrarTime(time)){
+            ControleTime controle = new ControleTime();
+            if (controle.cadastrarTime(time)){
+                time.setCodTime((Integer.parseInt(jcodTime.getText())));
+                time.setNomeTime(jnomeTime.getText());
+            }
+            TimeDAO timeDAO = new TimeDAO(time);
+            timeDAO.insert();
             JOptionPane.showMessageDialog (this, "Cadastrado com Sucesso!");
-            time.setCodTime((Integer.parseInt(jcodTime.getText())));
-            time.setNomeTime(jnomeTime.getText());
-        
-        }else {
-            JOptionPane.showMessageDialog (this, "Falha no cadastro!");
-            
+        }catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(CadastroJogador.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            telaAnterior.setEnabled(true);
+            this.dispose();
         }
-        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -174,13 +175,7 @@ public class CadastroTime extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadastroTime.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadastroTime.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadastroTime.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(CadastroTime.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
@@ -190,6 +185,7 @@ public class CadastroTime extends javax.swing.JFrame {
          */
         java.awt.EventQueue.invokeLater(new Runnable() {
 
+            @Override
             public void run() {
                 new CadastroTime().setVisible(true);
             }

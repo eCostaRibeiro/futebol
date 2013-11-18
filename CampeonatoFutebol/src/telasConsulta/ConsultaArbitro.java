@@ -5,7 +5,10 @@
 package telasConsulta;
 
 import campeonatofutebol.Arbitro;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import repositorios.RepositorioArbitro;
 import telasCadastro.MenuPrincipal;
@@ -18,39 +21,43 @@ public class ConsultaArbitro extends javax.swing.JFrame {
     private MenuPrincipal telaPrincipal;
     /**
      * Creates new form ConsultaJogador
+     * @throws java.lang.InstantiationException
+     * @throws java.lang.IllegalAccessException
+     * @throws java.lang.ClassNotFoundException
+     * @throws java.sql.SQLException
      */
-    public ConsultaArbitro() {
+    public ConsultaArbitro() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
         initComponents();
         
         carregarJTable();
     }
     
-    public ConsultaArbitro (MenuPrincipal telaPrincipal) {
+    public ConsultaArbitro (MenuPrincipal telaPrincipal) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
         this();
         
         this.telaPrincipal = telaPrincipal;
     }
     
-    private void carregarJTable() {
+    private void carregarJTable() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
         ArrayList<Arbitro> lista = RepositorioArbitro.getInstance().obterListaArbitro();
         
         DefaultTableModel modelo = new javax.swing.table.DefaultTableModel();
         modelo.addColumn("Código");
         modelo.addColumn("Nome");
         
-        if (lista.size() == 0) {
+        if (lista.isEmpty()) {
             modelo.addRow(new String [] {"Sem Dados",
                 null,
                 null});
-        }
-        
-        for (int i = 0; i < lista.size(); i++) {
-            Arbitro arb = lista.get(i);
-            
-            //Alimenta as linhas de dados
-            modelo.addRow(new String[] {Integer.toString(arb.getCodArbitro()),
-                arb.getNomeArbitro()+ ""});
-        }
+        }else{
+            for (int i = 0; i < lista.size(); i++) {
+                Arbitro arb = lista.get(i);
+
+                //Alimenta as linhas de dados
+                modelo.addRow(new String[] {Integer.toString(arb.getCodArbitro()),
+                    arb.getNomeArbitro()+ ""});
+            }
+        }//fim do IF ELSE
         
         jTable1.setModel(modelo);
         
@@ -161,7 +168,11 @@ public class ConsultaArbitro extends javax.swing.JFrame {
 
             @Override
             public void run() {
-                new ConsultaArbitro().setVisible(true);
+                try {
+                    new ConsultaArbitro().setVisible(true);
+                } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException ex) {
+                    Logger.getLogger(ConsultaArbitro.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

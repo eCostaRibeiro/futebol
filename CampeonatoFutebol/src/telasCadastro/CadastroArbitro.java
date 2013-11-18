@@ -5,7 +5,12 @@
 package telasCadastro;
 
 import campeonatofutebol.Arbitro;
+import classesDAO.ArbitroDAO;
 import controles.ControleArbitro;
+import java.awt.HeadlessException;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,7 +26,7 @@ public class CadastroArbitro extends javax.swing.JFrame {
         initComponents();
     }
     
-    public CadastroArbitro(MenuPrincipal telaAnterior) {
+    public CadastroArbitro(MenuPrincipal telaAnterior) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException{
         // Chamar o construtor Padrão
         this ();
         
@@ -123,39 +128,41 @@ public class CadastroArbitro extends javax.swing.JFrame {
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // Tratamento para operação de fechar a janela
         telaAnterior.setEnabled(true);
+        this.dispose();
     }//GEN-LAST:event_formWindowClosed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // Botão Cancelar
-        this.dispose();
         telaAnterior.setEnabled(true);
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        //leitura dos campos
         String codArbitro = jcodArbitro.getText();
         String nomeArbitro = jnomeArbitro.getText();
        
         try {
-            Integer ca = Integer.parseInt(codArbitro);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog (this, 
-                    "Falha no cadastro do código!");
-            return;
-        }
-        // Criando objeto do Arbitro
-        Arbitro arb = new Arbitro ();
+            // Criando objeto do Arbitro
+            Arbitro arb = new Arbitro ();
         
-        // Chamar o controle para tentar cadastrar
-        ControleArbitro controle = new ControleArbitro();
-        if (controle.cadastrarArbitro(arb)){
+            // Chamar o controle para validar preenchimento
+            ControleArbitro controle = new ControleArbitro();
+            if (controle.cadastrarArbitro(arb)){
+                arb.setCodArbitro((Integer.parseInt(jcodArbitro.getText())));
+                arb.setNomeArbitro(jnomeArbitro.getText());   
+            }
+            ArbitroDAO arbitroDB = new ArbitroDAO(arb);
+            arbitroDB.insert();
             JOptionPane.showMessageDialog (this, "Cadastrado com Sucesso!");
-            arb.setCodArbitro((Integer.parseInt(jcodArbitro.getText())));
-            arb.setNomeArbitro(jnomeArbitro.getText());
-                        
-        }else {
-            JOptionPane.showMessageDialog (this, "Falha no cadastro!");
             
+        }catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(CadastroArbitro.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            telaAnterior.setEnabled(true);
+            this.dispose();
         }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jcodArbitroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcodArbitroActionPerformed
@@ -198,6 +205,7 @@ public class CadastroArbitro extends javax.swing.JFrame {
          */
         java.awt.EventQueue.invokeLater(new Runnable() {
 
+            @Override
             public void run() {
                 new CadastroArbitro().setVisible(true);
             }

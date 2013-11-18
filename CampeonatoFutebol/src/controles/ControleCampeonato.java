@@ -13,6 +13,7 @@ import campeonatofutebol.Campeonato;
 //<editor-fold defaultstate="collapsed" desc="Controle da Classe Campeonato">
 public class ControleCampeonato {
     
+    @SuppressWarnings("empty-statement")
     public boolean cadastrarCampeonato (Campeonato camp){
         
         boolean result = false;
@@ -22,10 +23,8 @@ public class ControleCampeonato {
         
         repositorios.RepositorioCampeonato.getInstance().cadastrarCampeonato(camp);
         
-        result = true;
-        
+        result = true;   
     }
-                
                 return result;
     }
 }

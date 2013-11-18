@@ -5,7 +5,12 @@
 package telasCadastro;
 
 import campeonatofutebol.Estadio;
+import classesDAO.EstadioDAO;
 import controles.ControleEstadio;
+import java.awt.HeadlessException;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -122,36 +127,36 @@ public class CadastroEstadio extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // Botão Cancelar
-        this.dispose();
         telaAnterior.setEnabled(true);
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        //leitura dos campos
         String codEstadio = jcodEstadio.getText();
         String nomeEstadio = jnomeEstadio.getText();
        
-        try {
-            Integer etd = Integer.parseInt(codEstadio);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog (this, 
-                    "Falha no cadastro do código!");
-            return;
-        }
         // Criando objeto do Arbitro
         Estadio etd = new Estadio ();
         
-        // Chamar o controle para tentar cadastrar
-        ControleEstadio controle = new ControleEstadio();
-        if (controle.cadastrarEstadio(etd)){
-            JOptionPane.showMessageDialog (this, "Cadastrado com Sucesso!");
-            etd.setCodEstadio(Integer.parseInt(jcodEstadio.getText()));
-            etd.setNomeEstadio(jnomeEstadio.getText());
-        
-        }else {
-            JOptionPane.showMessageDialog (this, "Falha no cadastro!");
+        try{
+            // Chamar o controle para tentar cadastrar
+            ControleEstadio controle = new ControleEstadio();
+            if (controle.cadastrarEstadio(etd)){
+                etd.setCodEstadio(Integer.parseInt(jcodEstadio.getText()));
+                etd.setNomeEstadio(jnomeEstadio.getText());
+            }
             
+            EstadioDAO estadioDB = new EstadioDAO(etd);
+            estadioDB.insert();
+            JOptionPane.showMessageDialog (this, "Cadastrado com sucesso!");
+            
+        } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(CadastroEstadio.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            telaAnterior.setEnabled(true);
+            this.dispose();
         }
-        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -190,6 +195,7 @@ public class CadastroEstadio extends javax.swing.JFrame {
          */
         java.awt.EventQueue.invokeLater(new Runnable() {
 
+            @Override
             public void run() {
                 new CadastroEstadio().setVisible(true);
             }
