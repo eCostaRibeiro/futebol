@@ -5,7 +5,10 @@
 package telasConsulta;
 
 import campeonatofutebol.Time;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import repositorios.RepositorioTime;
 import telasCadastro.MenuPrincipal;
@@ -19,26 +22,26 @@ import telasCadastro.MenuPrincipal;
     /**
      * Creates new form ConsultaTime
      */
-    private ConsultaTime() {
+    private ConsultaTime() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
         initComponents();
         
         carregarJTable();
     }
     
-    public ConsultaTime (MenuPrincipal telaPrincipal) {
+    public ConsultaTime (MenuPrincipal telaPrincipal) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
         this();
         
         this.telaPrincipal = telaPrincipal;
     }
     
-    private void carregarJTable() {
+    private void carregarJTable() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
         ArrayList<Time> lista = RepositorioTime.getInstance().obterListaTime();
         
         DefaultTableModel modelo = new javax.swing.table.DefaultTableModel();
         modelo.addColumn("Código");
         modelo.addColumn("Nome");
         
-        if (lista.size() == 0) {
+        if (lista.isEmpty()) {
             modelo.addRow(new String [] {"Sem Dados",
                 null,
                 null});
@@ -159,8 +162,13 @@ import telasCadastro.MenuPrincipal;
          */
         java.awt.EventQueue.invokeLater(new Runnable() {
 
+            @Override
             public void run() {
-                new ConsultaTime().setVisible(true);
+                try {
+                    new ConsultaTime().setVisible(true);
+                } catch (        InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException ex) {
+                    Logger.getLogger(ConsultaTime.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

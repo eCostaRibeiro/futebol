@@ -127,17 +127,18 @@ public class CadastroArbitro extends javax.swing.JFrame {
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // Tratamento para operação de fechar a janela
-        this.dispose();
         telaAnterior.setEnabled(true);
+        this.dispose();
     }//GEN-LAST:event_formWindowClosed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // Botão Cancelar
+        telaAnterior.setEnabled(true);
         this.dispose();
-//        telaAnterior.setEnabled(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        //leitura dos campos
         String codArbitro = jcodArbitro.getText();
         String nomeArbitro = jnomeArbitro.getText();
        
@@ -145,7 +146,7 @@ public class CadastroArbitro extends javax.swing.JFrame {
             // Criando objeto do Arbitro
             Arbitro arb = new Arbitro ();
         
-            // Chamar o controle para tentar cadastrar
+            // Chamar o controle para validar preenchimento
             ControleArbitro controle = new ControleArbitro();
             if (controle.cadastrarArbitro(arb)){
                 arb.setCodArbitro((Integer.parseInt(jcodArbitro.getText())));
@@ -155,15 +156,11 @@ public class CadastroArbitro extends javax.swing.JFrame {
             arbitroDB.insert();
             JOptionPane.showMessageDialog (this, "Cadastrado com Sucesso!");
             
-        } catch (HeadlessException | NumberFormatException e) {
-            JOptionPane.showMessageDialog (this, 
-                    "Falha no cadastro do arbitro!");
-            System.out.println(e);
-        } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException ex) {
+        }catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException ex) {
             Logger.getLogger(CadastroArbitro.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
-            this.dispose();
             telaAnterior.setEnabled(true);
+            this.dispose();
         }
         
     }//GEN-LAST:event_jButton1ActionPerformed

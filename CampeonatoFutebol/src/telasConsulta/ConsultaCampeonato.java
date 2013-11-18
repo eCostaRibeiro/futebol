@@ -5,7 +5,10 @@
 package telasConsulta;
 
 import campeonatofutebol.Campeonato;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import repositorios.RepositorioCampeonato;
 import telasCadastro.MenuPrincipal;
@@ -20,20 +23,20 @@ public class ConsultaCampeonato extends javax.swing.JFrame {
     /**
      * Creates new form ConsultaCampeonato
      */
-    private ConsultaCampeonato() {
+    private ConsultaCampeonato() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
         initComponents();
         
         carregarJTable();
     }
     
-    public ConsultaCampeonato (MenuPrincipal telaPrincipal) {
+    public ConsultaCampeonato (MenuPrincipal telaPrincipal) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
         this();
         
         this.telaPrincipal = telaPrincipal;
     }
 
        
-    private void carregarJTable() {
+    private void carregarJTable() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
         ArrayList<Campeonato> lista = RepositorioCampeonato.getInstance().obterListaCampeonato();
         
         DefaultTableModel modelo = new javax.swing.table.DefaultTableModel();
@@ -41,24 +44,21 @@ public class ConsultaCampeonato extends javax.swing.JFrame {
         modelo.addColumn("Nome");
         modelo.addColumn("Ano");
         
-        if (lista.size() == 0) {
+        if (lista.isEmpty()) {
             modelo.addRow(new String [] {"Sem Dados",
                 null,
                 null,
                 null});
-        }
-        
-        for (int i = 0; i < lista.size(); i++) {
-            Campeonato camp = lista.get(i);
-            
-            //Alimenta as linhas de dados
-            modelo.addRow(new String[] {Integer.toString(camp.getCodCamp()),
+        }else{
+            for (int i = 0; i < lista.size(); i++) {
+                Campeonato camp = lista.get(i);
+                //Alimenta as linhas de dados
+                modelo.addRow(new String[] {Integer.toString(camp.getCodCamp()),
                 camp.getNomeCamp() + "",
                 camp.getAnoCamp() + ""});
-        }
-        
+            }
+        }//fim IF ELSE
         jTable1.setModel(modelo);
-        
     }
     
     
@@ -162,13 +162,7 @@ public class ConsultaCampeonato extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ConsultaCampeonato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ConsultaCampeonato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ConsultaCampeonato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(ConsultaCampeonato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
@@ -178,8 +172,13 @@ public class ConsultaCampeonato extends javax.swing.JFrame {
          */
         java.awt.EventQueue.invokeLater(new Runnable() {
 
+            @Override
             public void run() {
-                new ConsultaCampeonato().setVisible(true);
+                try {
+                    new ConsultaCampeonato().setVisible(true);
+                } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException ex) {
+                    Logger.getLogger(ConsultaCampeonato.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

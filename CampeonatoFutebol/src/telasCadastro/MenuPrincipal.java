@@ -179,9 +179,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        // Tela de consulta do Jogador
-        
-        new ConsultaJogador().setVisible(true);
+        try {
+            // Tela de consulta do Jogador
+
+            new ConsultaJogador().setVisible(true);
+        } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
@@ -244,9 +248,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        // Tela de consulta do Campeonato
-        
-        new ConsultaCampeonato(this).setVisible(true);
+        try {
+            // Tela de consulta do Campeonato
+
+            new ConsultaCampeonato(this).setVisible(true);
+        } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
@@ -262,16 +270,24 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-       // Tela de consulta do Estadio
-        
-        new ConsultaEstadio(this).setVisible(true);
+        try {
+            // Tela de consulta do Estadio
+
+            new ConsultaEstadio(this).setVisible(true);
+        } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        // Tela de consulta do Time
-        
-        new ConsultaTime(this).setVisible(true);
+        try {
+            // Tela de consulta do Time
+
+            new ConsultaTime(this).setVisible(true);
+        } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 

@@ -5,7 +5,10 @@
 package telasConsulta;
 
 import campeonatofutebol.Jogador;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import repositorios.RepositorioJogador;
 import telasCadastro.MenuPrincipal;
@@ -18,42 +21,46 @@ public class ConsultaJogador extends javax.swing.JFrame {
     private MenuPrincipal telaPrincipal;
     /**
      * Creates new form ConsultaJogador
+     * @throws java.lang.InstantiationException
+     * @throws java.lang.IllegalAccessException
+     * @throws java.lang.ClassNotFoundException
+     * @throws java.sql.SQLException
      */
-    public ConsultaJogador() {
+    public ConsultaJogador() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
         initComponents();
         
         carregarJTable();
     }
     
-    public ConsultaJogador (MenuPrincipal telaPrincipal) {
+    public ConsultaJogador (MenuPrincipal telaPrincipal) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
         this();
         
         this.telaPrincipal = telaPrincipal;
     }
     
-    private void carregarJTable() {
+    private void carregarJTable() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
         ArrayList<Jogador> lista = RepositorioJogador.getInstance().obterListaJogador();
         
         DefaultTableModel modelo = new javax.swing.table.DefaultTableModel();
-        modelo.addColumn("Código");
+        modelo.addColumn("Código Time");
+        modelo.addColumn("Nome Time");
+        modelo.addColumn("Código Jogador");
         modelo.addColumn("Nome");
         
-        if (lista.size() == 0) {
+        if (lista.isEmpty()) {
             modelo.addRow(new String [] {"Sem Dados",
                 null,
                 null});
-        }
-        
-        for (int i = 0; i < lista.size(); i++) {
-            Jogador joga = lista.get(i);
-            
-            //Alimenta as linhas de dados
-            modelo.addRow(new String[] {Integer.toString(joga.getCodJogador()),
-                joga.getNomeJogador() + ""});
-        }
-        
+        }else{        
+            for (int i = 0; i < lista.size(); i++) {
+                Jogador joga = lista.get(i);
+
+                //Alimenta as linhas de dados
+                modelo.addRow(new String[] {Integer.toString(joga.getTimeJogador().getCodTime()), joga.getTimeJogador().getNomeTime(), Integer.toString(joga.getCodJogador()),
+                    joga.getNomeJogador() + ""});
+            }
+        }//fim IF ELSE
         jTable1.setModel(modelo);
-        
     }
 
     /**
@@ -161,7 +168,11 @@ public class ConsultaJogador extends javax.swing.JFrame {
 
             @Override
             public void run() {
-                new ConsultaJogador().setVisible(true);
+                try {
+                    new ConsultaJogador().setVisible(true);
+                } catch (        InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException ex) {
+                    Logger.getLogger(ConsultaJogador.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

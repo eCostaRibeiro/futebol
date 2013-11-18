@@ -5,7 +5,11 @@
 package telasCadastro;
 
 import campeonatofutebol.Jogador;
+import classesDAO.JogadorDAO;
 import controles.ControleJogador;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -132,30 +136,35 @@ public class CadastroJogador extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        //leitura dos campos
         String codJogador = jcodJogador.getText();
         String nomeJogador = jnomeJogador.getText();
        
-        try {
-            Integer ca = Integer.parseInt(codJogador);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog (this, 
-                    "Falha no cadastro do código!");
-            return;
-        }
-        // Criando objeto do Arbitro
-        Jogador joga = new Jogador ();
         
-        // Chamar o controle para tentar cadastrar
-        ControleJogador controle = new ControleJogador();
-        if (controle.cadastrarJogador(joga)){
-            JOptionPane.showMessageDialog (this, "Cadastrado com Sucesso!");
-            joga.setCodJogador((Integer.parseInt(jcodJogador.getText())));
-            joga.setNomeJogador(jnomeJogador.getText());
+        // Criando objeto Jogador
+        Jogador joga = new Jogador();
         
-        }else {
-            JOptionPane.showMessageDialog (this, "Falha no cadastro!");
-            
-        }
+        try{
+            // Chamar o controle para tentar cadastrar
+            ControleJogador controle = new ControleJogador();
+            if (controle.cadastrarJogador(joga)){
+                
+                joga.setCodJogador((Integer.parseInt(jcodJogador.getText())));
+                joga.setNomeJogador(jnomeJogador.getText());
+                JogadorDAO jogadorDAO = new JogadorDAO(joga);
+                
+                    jogadorDAO.insert();
+                
+                JOptionPane.showMessageDialog (this, "Cadastrado com Sucesso!");
+            }
+        }catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(CadastroJogador.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(CadastroJogador.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            telaAnterior.setEnabled(true);
+            this.dispose();
+        }   
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -194,6 +203,7 @@ public class CadastroJogador extends javax.swing.JFrame {
          */
         java.awt.EventQueue.invokeLater(new Runnable() {
 
+            @Override
             public void run() {
                 new CadastroJogador().setVisible(true);
             }

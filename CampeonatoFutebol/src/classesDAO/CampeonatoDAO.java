@@ -1,13 +1,12 @@
 /*
  * To change this license header, choose License Headers in Project Properties.
-
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 
 package classesDAO;
 
-import campeonatofutebol.Arbitro;
+import campeonatofutebol.Campeonato;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,24 +19,24 @@ import persistencia.ConexaoOracle;
  *
  * @author Stwuart
  */
-public class ArbitroDAO {
-    private Arbitro arbitro;
-    private ArrayList<Arbitro> listaArbitro;
+public class CampeonatoDAO {
+     private Campeonato campeonato;
+    private ArrayList<Campeonato> listaCampeonato;
 
-    public ArbitroDAO(Arbitro arbitro) {
-        this.arbitro = arbitro;
+    public CampeonatoDAO(Campeonato campeonato) {
+        this.campeonato = campeonato;
     }
     
-    public ArbitroDAO(){
-        this.listaArbitro = new ArrayList<>();
+    public CampeonatoDAO(){
+        this.listaCampeonato = new ArrayList<>();
     }
     
     
     public void insert()throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException{
-        try(Connection dbConecta = new ConexaoOracle().getConnection();
-                PreparedStatement insert = dbConecta.prepareStatement("insert into arbitro values (?, ?)")){
-            insert.setInt(1, this.arbitro.getCodArbitro());
-            insert.setString(2, this.arbitro.getNomeArbitro());
+        try(Connection dbConecta = new ConexaoOracle().getConnection(); PreparedStatement insert = dbConecta.prepareStatement("insert into campeonato values (?, ?, ?)")){
+            insert.setInt(1, this.campeonato.getCodCamp());
+            insert.setString(2, this.campeonato.getNomeCamp());
+            insert.setInt(3, this.campeonato.getAnoCamp());
             insert.executeQuery();
             
         }catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) {
@@ -46,21 +45,19 @@ public class ArbitroDAO {
         
     }
     
-    public ArrayList<Arbitro> select() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException{
+    public ArrayList<Campeonato> select() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException{
         try (Connection dbConecta = new ConexaoOracle().getConnection();
                 Statement select = dbConecta.createStatement();
-                ResultSet tupla = select.executeQuery("select * from arbitro order by codigo"))
-        {
-            
-            
+                ResultSet tupla = select.executeQuery("select * from campeonato order by codigo"))
+        {           
             while (tupla.next()){
-			Arbitro arb = new Arbitro(tupla.getInt("codigo"), tupla.getString("nome"));
-                        this.listaArbitro.add(arb);
-		}
-            return this.listaArbitro;
+                Campeonato camp = new Campeonato(tupla.getInt("codigo"), tupla.getString("nome"), tupla.getInt("ano"));
+                this.listaCampeonato.add(camp);
+            }
+            return this.listaCampeonato;
         } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException ex) {
             System.out.println("erro ao selecionar dados. \n" + ex.getMessage());
             return null;
         }
     }
-}//fim da classe
+}

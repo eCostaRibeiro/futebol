@@ -2,22 +2,23 @@ package campeonatofutebol;
 
 public class Campeonato {
     private Integer codCamp;
-    private Integer anoCamp;
     private String nomeCamp;
+    private Integer anoCamp;
+    
 
     //<editor-fold defaultstate="collapsed" desc="Construtor">
-    public Campeonato(Integer codCamp, Integer anoCamp, String nomeCamp) {
+    public Campeonato(Integer codCamp, String nomeCamp, Integer anoCamp) {
         this.codCamp = codCamp;
-        this.anoCamp = anoCamp;
         this.nomeCamp = nomeCamp;
+        this.anoCamp = anoCamp;
     }
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="Construtor Genérico">
     public Campeonato() {
         this.codCamp = null;
-        this.anoCamp = null;
         this.nomeCamp = null;
+        this.anoCamp = null;
     }
     //</editor-fold>
 

@@ -3,9 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/GIT/futebol/CampeonatoFutebol/src/telasCadastro/CadastroArbitro.java</file>
-            <file>file:/C:/GIT/futebol/CampeonatoFutebol/src/telasCadastro/MenuPrincipal.java</file>
-            <file>file:/C:/GIT/futebol/CampeonatoFutebol/src/telasConsulta/ConsultaArbitro.java</file>
+            <file>file:/C:/GIT/futebol/CampeonatoFutebol/src/telasCadastro/CadastroJogador.java</file>
+            <file>file:/C:/GIT/futebol/CampeonatoFutebol/src/telasConsulta/ConsultaJogador.java</file>
+            <file>file:/C:/GIT/futebol/CampeonatoFutebol/src/classesDAO/TimeDAO.java</file>
+            <file>file:/C:/GIT/futebol/CampeonatoFutebol/src/campeonatofutebol/Jogador.java</file>
+            <file>file:/C:/GIT/futebol/CampeonatoFutebol/src/repositorios/RepositorioJogador.java</file>
+            <file>file:/C:/GIT/futebol/CampeonatoFutebol/src/controles/ControleJogador.java</file>
+            <file>file:/C:/GIT/futebol/CampeonatoFutebol/src/campeonatofutebol/Partida.java</file>
+            <file>file:/C:/GIT/futebol/CampeonatoFutebol/src/classesDAO/JogadorDAO.java</file>
         </group>
     </open-files>
 </project-private>

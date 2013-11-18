@@ -5,7 +5,10 @@
 package telasConsulta;
 
 import campeonatofutebol.Estadio;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import repositorios.RepositorioEstadio;
 import telasCadastro.MenuPrincipal;
@@ -19,39 +22,38 @@ public class ConsultaEstadio extends javax.swing.JFrame {
     /**
      * Creates new form ConsultaEstadio
      */
-    private ConsultaEstadio() {
+    private ConsultaEstadio() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
         initComponents();
         
         carregarJTable();
     }
     
-    public ConsultaEstadio (MenuPrincipal telaPrincipal) {
+    public ConsultaEstadio (MenuPrincipal telaPrincipal) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
         this();
         
         this.telaPrincipal = telaPrincipal;
     }
     
-    private void carregarJTable() {
+    private void carregarJTable() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
         ArrayList<Estadio> lista = RepositorioEstadio.getInstance().obterListaEstadio();
         
         DefaultTableModel modelo = new javax.swing.table.DefaultTableModel();
         modelo.addColumn("Código");
         modelo.addColumn("Nome");
         
-        if (lista.size() == 0) {
+        if (lista.isEmpty()) {
             modelo.addRow(new String [] {"Sem Dados",
                 null,
                 null});
-        }
-        
-        for (int i = 0; i < lista.size(); i++) {
-            Estadio etd = lista.get(i);
-            
-            //Alimenta as linhas de dados
-            modelo.addRow(new String[] {Integer.toString(etd.getCodEstadio()),
-                etd.getNomeEstadio() + ""});
-        }
-        
+        }else{
+            for (int i = 0; i < lista.size(); i++) {
+                Estadio etd = lista.get(i);
+
+                //Alimenta as linhas de dados
+                modelo.addRow(new String[] {Integer.toString(etd.getCodEstadio()),
+                    etd.getNomeEstadio() + ""});
+            }
+        }//fim IF  ELSE
         jTable1.setModel(modelo);
         
     }
@@ -159,8 +161,13 @@ public class ConsultaEstadio extends javax.swing.JFrame {
          */
         java.awt.EventQueue.invokeLater(new Runnable() {
 
+            @Override
             public void run() {
-                new ConsultaEstadio().setVisible(true);
+                try {
+                    new ConsultaEstadio().setVisible(true);
+                } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException ex) {
+                    Logger.getLogger(ConsultaEstadio.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
