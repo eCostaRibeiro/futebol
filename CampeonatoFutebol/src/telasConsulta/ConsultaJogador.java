@@ -26,19 +26,19 @@ public class ConsultaJogador extends javax.swing.JFrame {
      * @throws java.lang.ClassNotFoundException
      * @throws java.sql.SQLException
      */
-    public ConsultaJogador() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+    public ConsultaJogador() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, Exception {
         initComponents();
         
         carregarJTable();
     }
     
-    public ConsultaJogador (MenuPrincipal telaPrincipal) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+    public ConsultaJogador (MenuPrincipal telaPrincipal) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, Exception {
         this();
         
         this.telaPrincipal = telaPrincipal;
     }
     
-    private void carregarJTable() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+    private void carregarJTable() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, Exception {
         ArrayList<Jogador> lista = RepositorioJogador.getInstance().obterListaJogador();
         
         DefaultTableModel modelo = new javax.swing.table.DefaultTableModel();
@@ -170,7 +170,9 @@ public class ConsultaJogador extends javax.swing.JFrame {
             public void run() {
                 try {
                     new ConsultaJogador().setVisible(true);
-                } catch (        InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException ex) {
+                } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException ex) {
+                    Logger.getLogger(ConsultaJogador.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (Exception ex) {
                     Logger.getLogger(ConsultaJogador.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
