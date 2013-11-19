@@ -7,7 +7,6 @@ package telasCadastro;
 import campeonatofutebol.Arbitro;
 import classesDAO.ArbitroDAO;
 import controles.ControleArbitro;
-import java.awt.HeadlessException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;

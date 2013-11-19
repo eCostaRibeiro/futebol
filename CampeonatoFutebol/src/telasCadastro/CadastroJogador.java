@@ -6,6 +6,7 @@ package telasCadastro;
 
 import campeonatofutebol.Jogador;
 import classesDAO.JogadorDAO;
+import static com.sun.java.accessibility.util.AWTEventMonitor.addWindowListener;
 import controles.ControleJogador;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -16,7 +17,7 @@ import javax.swing.JOptionPane;
  *
  * @author Renan
  */
-public class CadastroJogador extends javax.swing.JFrame {
+public class CadastroJogador extends javax.swing.JInternalFrame {
     private MenuPrincipal telaAnterior;
     /**
      * Creates new form CadastroJogador

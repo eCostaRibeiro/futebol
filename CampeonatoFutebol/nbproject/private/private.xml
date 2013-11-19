@@ -2,19 +2,9 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-<<<<<<< HEAD
-        <group/>
-=======
         <group>
-            <file>file:/C:/GIT/futebol/CampeonatoFutebol/src/telasCadastro/CadastroJogador.java</file>
-            <file>file:/C:/GIT/futebol/CampeonatoFutebol/src/telasConsulta/ConsultaJogador.java</file>
-            <file>file:/C:/GIT/futebol/CampeonatoFutebol/src/classesDAO/TimeDAO.java</file>
-            <file>file:/C:/GIT/futebol/CampeonatoFutebol/src/campeonatofutebol/Jogador.java</file>
-            <file>file:/C:/GIT/futebol/CampeonatoFutebol/src/repositorios/RepositorioJogador.java</file>
-            <file>file:/C:/GIT/futebol/CampeonatoFutebol/src/controles/ControleJogador.java</file>
-            <file>file:/C:/GIT/futebol/CampeonatoFutebol/src/campeonatofutebol/Partida.java</file>
-            <file>file:/C:/GIT/futebol/CampeonatoFutebol/src/classesDAO/JogadorDAO.java</file>
+            <file>file:/C:/GIT/futebol/CampeonatoFutebol/src/NovasTelas/TelaPrincipal.java</file>
+            <file>file:/C:/GIT/futebol/CampeonatoFutebol/src/NovasTelas/Cadastros/CadastroArbitro.java</file>
         </group>
->>>>>>> 5a2fe6b2f9cdd2dd9677f4f0bb5e48dc6edbb63d
     </open-files>
 </project-private>

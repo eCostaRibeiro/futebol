@@ -28,7 +28,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -38,6 +37,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenuItem11 = new javax.swing.JMenuItem();
@@ -49,14 +49,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         setTitle("Futebol");
 
         jMenu1.setText("Menu");
-
-        jMenuItem1.setText("Criar Campeonato");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem1);
 
         jMenu3.setText("Consultas");
 
@@ -109,6 +101,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenu1.add(jMenu3);
 
         jMenu4.setText("Gerenciar Campeonato");
+
+        jMenuItem1.setText("Criar Campeonato");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem1);
 
         jMenuItem9.setText("Cadastrar Time");
         jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
@@ -185,6 +185,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
             new ConsultaJogador().setVisible(true);
         } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException ex) {
             Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }//GEN-LAST:event_jMenuItem6ActionPerformed
@@ -195,6 +197,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         
         // Tela de Cadastro de Jogador       
         new CadastroJogador(this).setVisible(true);
+        
         
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
