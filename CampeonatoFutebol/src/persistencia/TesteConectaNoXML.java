@@ -18,8 +18,10 @@ public class TesteConectaNoXML {
   /**
      * @param args the command line arguments
      * @throws java.sql.SQLException
+     * @throws java.lang.IllegalAccessException
+     * @throws java.lang.ClassNotFoundException
      */
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws SQLException, IllegalAccessException, ClassNotFoundException, Exception {
         UsuarioOracle usuario;
         
 //        UsaXML xml = new UsaXML();

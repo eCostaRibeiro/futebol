@@ -38,7 +38,7 @@ public class RepositorioArbitro {
         listaArbitro.add(arb);
     }
     
-    public ArrayList<Arbitro> obterListaArbitro() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+    public ArrayList<Arbitro> obterListaArbitro() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, Exception {
         ArbitroDAO consulta = new ArbitroDAO();
         listaArbitro = consulta.select();
         return listaArbitro;

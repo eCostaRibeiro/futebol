@@ -255,7 +255,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
             // Tela de consulta do Campeonato
 
             new ConsultaCampeonato(this).setVisible(true);
-        } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException ex) {
+        } catch (IllegalAccessException | ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
             Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
         
@@ -266,7 +268,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
             // Tela de consulta do Arbitro
 
             new ConsultaArbitro(this).setVisible(true);
-        } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException ex) {
+        } catch (IllegalAccessException | ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
             Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
         
@@ -277,10 +281,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
             // Tela de consulta do Estadio
 
             new ConsultaEstadio(this).setVisible(true);
-        } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException ex) {
+        } catch (IllegalAccessException | ClassNotFoundException | SQLException ex) {
             Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+        } catch (Exception ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }         
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
@@ -289,6 +294,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
             new ConsultaTime(this).setVisible(true);
         } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
             Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
         

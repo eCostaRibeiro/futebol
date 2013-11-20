@@ -26,19 +26,19 @@ public class ConsultaArbitro extends javax.swing.JFrame {
      * @throws java.lang.ClassNotFoundException
      * @throws java.sql.SQLException
      */
-    public ConsultaArbitro() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+    public ConsultaArbitro() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, Exception {
         initComponents();
         
         carregarJTable();
     }
     
-    public ConsultaArbitro (MenuPrincipal telaPrincipal) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+    public ConsultaArbitro (MenuPrincipal telaPrincipal) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, Exception {
         this();
         
         this.telaPrincipal = telaPrincipal;
     }
     
-    private void carregarJTable() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+    private void carregarJTable() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, Exception {
         ArrayList<Arbitro> lista = RepositorioArbitro.getInstance().obterListaArbitro();
         
         DefaultTableModel modelo = new javax.swing.table.DefaultTableModel();
@@ -170,7 +170,9 @@ public class ConsultaArbitro extends javax.swing.JFrame {
             public void run() {
                 try {
                     new ConsultaArbitro().setVisible(true);
-                } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException ex) {
+                } catch (IllegalAccessException | ClassNotFoundException | SQLException ex) {
+                    Logger.getLogger(ConsultaArbitro.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (Exception ex) {
                     Logger.getLogger(ConsultaArbitro.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }

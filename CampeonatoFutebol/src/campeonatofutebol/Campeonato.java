@@ -3,11 +3,11 @@ package campeonatofutebol;
 public class Campeonato {
     private Integer codCamp;
     private String nomeCamp;
-    private Integer anoCamp;
+    private String anoCamp;
     
 
     //<editor-fold defaultstate="collapsed" desc="Construtor">
-    public Campeonato(Integer codCamp, String nomeCamp, Integer anoCamp) {
+    public Campeonato(Integer codCamp, String nomeCamp, String anoCamp) {
         this.codCamp = codCamp;
         this.nomeCamp = nomeCamp;
         this.anoCamp = anoCamp;
@@ -23,14 +23,6 @@ public class Campeonato {
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="Getters e Setters">
-    public Integer getAnoCamp() {
-        return anoCamp;
-    }
-    
-    public void setAnoCamp(Integer anoCamp) {
-        this.anoCamp = anoCamp;
-    }
-    
     public Integer getCodCamp() {
         return codCamp;
     }
@@ -45,6 +37,14 @@ public class Campeonato {
     
     public void setNomeCamp(String nomeCamp) {
         this.nomeCamp = nomeCamp;
+    }
+    
+    public String getAnoCamp() {
+        return anoCamp;
+    }
+    
+    public void setAnoCamp(String anoCamp) {
+        this.anoCamp = anoCamp;
     }
     //</editor-fold>
 }

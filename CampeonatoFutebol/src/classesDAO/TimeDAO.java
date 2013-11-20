@@ -32,19 +32,19 @@ public class TimeDAO {
     }
     
     
-    public void insert()throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException{
+    public void insert()throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, Exception{
         try(Connection dbConecta = new ConexaoOracle().getConnection(); PreparedStatement insert = dbConecta.prepareStatement("insert into arbitro values (?, ?)")){
             insert.setInt(1, this.time.getCodTime());
             insert.setString(2, this.time.getNomeTime());
             insert.executeQuery();
             
-        }catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) {
-            System.out.println("Nao foi possivel Conectar! \n"+ e.getMessage());
+        }catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException ex) {
+            throw new Exception ("Erro TimeDAO.Insert\n" + ex.getMessage());
         }
         
     }
     
-    public ArrayList<Time> select() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException{
+    public ArrayList<Time> select() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, Exception{
         try (Connection dbConecta = new ConexaoOracle().getConnection();
                 Statement select = dbConecta.createStatement();
                 ResultSet tupla = select.executeQuery("select * from equipe order by codigo"))
@@ -55,12 +55,11 @@ public class TimeDAO {
             }
             return this.listaTime;
         } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException ex) {
-            System.out.println("erro ao selecionar dados. \n" + ex.getMessage());
-            return null;
+            throw new Exception ("Erro Time.select\n" + ex.getMessage());
         }
     }
     
-    public Time selectCodigo(Integer codigo) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException{
+    public Time selectCodigo(Integer codigo) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, Exception{
         try (Connection dbConecta = new ConexaoOracle().getConnection();
                 Statement select = dbConecta.createStatement();
                 ResultSet tupla = select.executeQuery("select codigo, nome from equipe where codigo = "+ codigo + "order by codigo"))
@@ -70,8 +69,7 @@ public class TimeDAO {
                 
                     return tme;
         } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException ex) {
-            System.out.println("erro ao selecionar dados. \n" + ex.getMessage());
-            return null;
+            throw new Exception ("Erro Time.SelectCodigo\n" + ex.getMessage());
         }
     }
 }

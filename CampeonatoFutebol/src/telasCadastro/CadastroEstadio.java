@@ -7,7 +7,6 @@ package telasCadastro;
 import campeonatofutebol.Estadio;
 import classesDAO.EstadioDAO;
 import controles.ControleEstadio;
-import java.awt.HeadlessException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -152,6 +151,8 @@ public class CadastroEstadio extends javax.swing.JFrame {
             JOptionPane.showMessageDialog (this, "Cadastrado com sucesso!");
             
         } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(CadastroEstadio.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
             Logger.getLogger(CadastroEstadio.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
             telaAnterior.setEnabled(true);

@@ -23,7 +23,7 @@ public class RepositorioEstadio {
     
     // singleton
     
-    public static RepositorioEstadio getInstance () {
+    public static RepositorioEstadio getInstance() {
         if (instance == null) {
             
             instance = new RepositorioEstadio();
@@ -37,7 +37,7 @@ public class RepositorioEstadio {
         listaEstadio.add(etd);
     }
     
-    public ArrayList<Estadio> obterListaEstadio() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+    public ArrayList<Estadio> obterListaEstadio() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, Exception {
         EstadioDAO consulta = new EstadioDAO();
         listaEstadio = consulta.select();
         return listaEstadio;

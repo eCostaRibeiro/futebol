@@ -35,5 +35,4 @@ public class Estadio {
         this.nomeEstadio = nomeEstadio;
     }
     //</editor-fold>
-    
 }

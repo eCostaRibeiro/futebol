@@ -33,14 +33,16 @@ public class JogadorDAO {
     
     public void insert()throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, Exception{
         try(Connection dbConecta = new ConexaoOracle().getConnection();
-                PreparedStatement insert = dbConecta.prepareStatement("insert into estadio values (?, ?, ?)"))
+                PreparedStatement insert = dbConecta.prepareStatement("insert into jogador values (?, ?, ?)"))
         {
             insert.setInt(1, this.jogador.getTimeJogador().getCodTime());
             insert.setInt(2, this.jogador.getCodJogador());
             insert.setString(3, this.jogador.getNomeJogador());
             insert.executeQuery();
         }catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException ex) {
-            throw new Exception ("Erro ao selecionar os dados\n " + ex.getMessage());
+            throw new Exception ("Erro Jogador.insert\n " + ex.getMessage());
+        }catch (Exception ex){
+            throw new Exception ("Erro ArbitroDAO.Insert\n"+ ex.getMessage());
         }
     }//fim insert
     
@@ -63,7 +65,7 @@ public class JogadorDAO {
             }
             return this.listaJogador;
         } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException ex) {
-            throw new Exception ("Erro ao selecionar os dados\n " + ex.getMessage());
+            throw new Exception ("Erro Jogador.select\n " + ex.getMessage());
         }
     }    
 }

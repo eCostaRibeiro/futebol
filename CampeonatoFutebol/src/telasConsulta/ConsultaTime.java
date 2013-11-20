@@ -22,19 +22,19 @@ import telasCadastro.MenuPrincipal;
     /**
      * Creates new form ConsultaTime
      */
-    private ConsultaTime() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+    private ConsultaTime() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, Exception {
         initComponents();
         
         carregarJTable();
     }
     
-    public ConsultaTime (MenuPrincipal telaPrincipal) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+    public ConsultaTime (MenuPrincipal telaPrincipal) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, Exception {
         this();
         
         this.telaPrincipal = telaPrincipal;
     }
     
-    private void carregarJTable() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+    private void carregarJTable() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, Exception {
         ArrayList<Time> lista = RepositorioTime.getInstance().obterListaTime();
         
         DefaultTableModel modelo = new javax.swing.table.DefaultTableModel();
@@ -166,7 +166,9 @@ import telasCadastro.MenuPrincipal;
             public void run() {
                 try {
                     new ConsultaTime().setVisible(true);
-                } catch (        InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException ex) {
+                } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException ex) {
+                    Logger.getLogger(ConsultaTime.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (Exception ex) {
                     Logger.getLogger(ConsultaTime.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }

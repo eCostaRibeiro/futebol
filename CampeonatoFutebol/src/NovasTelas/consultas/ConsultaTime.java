@@ -10,6 +10,7 @@ import campeonatofutebol.Time;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JDesktopPane;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import repositorios.RepositorioTime;
 
@@ -33,28 +34,32 @@ public class ConsultaTime extends javax.swing.JInternalFrame {
         carregarJTable();
     }
     
-    private void carregarJTable() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
-        ArrayList<Time> lista = RepositorioTime.getInstance().obterListaTime();
-        
-        DefaultTableModel modelo = new javax.swing.table.DefaultTableModel();
-        modelo.addColumn("Código");
-        modelo.addColumn("Nome");
-        
-        if (lista.isEmpty()) {
-            modelo.addRow(new String [] {"Sem Dados",
-                null,
-                null});
-        }
-        
-        for (int i = 0; i < lista.size(); i++) {
-            Time camp = lista.get(i);
+    private void carregarJTable() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, Exception {
+        try {
+            ArrayList<Time> lista = RepositorioTime.getInstance().obterListaTime();
             
-            //Alimenta as linhas de dados
-            modelo.addRow(new String[] {Integer.toString(camp.getCodTime()),
-                camp.getNomeTime() + ""});
+            DefaultTableModel modelo = new javax.swing.table.DefaultTableModel();
+            modelo.addColumn("Código");
+            modelo.addColumn("Nome");
+            
+            if (lista.isEmpty()) {
+                modelo.addRow(new String[]{"Sem Dados",
+                    null,
+                    null});
+            }
+            
+            for (int i = 0; i < lista.size(); i++) {
+                Time camp = lista.get(i);
+
+                //Alimenta as linhas de dados
+                modelo.addRow(new String[]{Integer.toString(camp.getCodTime()),
+                    camp.getNomeTime() + ""});
+            }
+            
+            jTable1.setModel(modelo);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Erro ConsultaTime.carregarJTable" + ex.getMessage());
         }
-        
-        jTable1.setModel(modelo);
         
     }
 
@@ -70,6 +75,9 @@ public class ConsultaTime extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+
+        setTitle("Consulta Time");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -91,12 +99,20 @@ public class ConsultaTime extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton2.setText("atualizar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(319, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 246, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -109,7 +125,9 @@ public class ConsultaTime extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(337, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -125,9 +143,20 @@ public class ConsultaTime extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        try {
+            this.carregarJTable();
+        } catch (IllegalAccessException | ClassNotFoundException | SQLException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables

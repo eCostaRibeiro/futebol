@@ -37,7 +37,7 @@ public class RepositorioTime {
         listaTime.add(time);
     }
     
-    public ArrayList<Time> obterListaTime() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+    public ArrayList<Time> obterListaTime() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, Exception {
         TimeDAO consulta = new TimeDAO();
         listaTime = consulta.select();
         return listaTime;

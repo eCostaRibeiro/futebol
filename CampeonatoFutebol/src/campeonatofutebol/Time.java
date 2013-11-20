@@ -10,12 +10,17 @@ public class Time {
         this.codTime = codTime;
         this.nomeTime = nomeTime;
     }
+    
+    public Time(Time tme) {
+        this.nomeTime = tme.getNomeTime();
+        this.codTime = tme.getCodTime();
+    }
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="Construtor Genérico">
-    public Time() {
-        this.nomeTime = null;
+    public Time(){
         this.codTime = null;
+        this.nomeTime = null;
     }
     //</editor-fold>
 

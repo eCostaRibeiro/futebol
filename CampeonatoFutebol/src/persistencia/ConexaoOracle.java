@@ -17,7 +17,7 @@ public class ConexaoOracle {
     private UsaXML xml;
     Connection con;
 
-    public Connection getConnection() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+    public Connection getConnection() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, Exception {
 	this.xml = new UsaXML();
         this.conected = false;
 	this.usuario = this.xml.leituraXML();
@@ -32,22 +32,21 @@ public class ConexaoOracle {
             this.conected = true;
 
             return this.con;
-        } catch (SQLException e) {
-            System.out.println("Nao foi possivel Conectar!! \n"+ e.getMessage());
-            return null;
+        } catch (SQLException ex) {
+            throw new Exception ("Erro ConexaoOracle.getConnection\n"+ ex.getMessage());
         }
 	
 	
 }
 
-    public void disconecta() throws SQLException{
+    public void disconecta() throws SQLException, Exception{
         try{
             if(checkConection()){
                 this.conected = false;                
                 this.con.close();
             }
-        }catch(SQLException e) {
-            System.out.println("Erro ao desconectar!! \n"+ e.getMessage());
+        }catch(SQLException ex) {
+            throw new Exception ("Erro ConexaoOracle.disconecta\n"+ ex.getMessage());
         }
     }
 

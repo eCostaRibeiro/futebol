@@ -22,19 +22,19 @@ public class ConsultaEstadio extends javax.swing.JFrame {
     /**
      * Creates new form ConsultaEstadio
      */
-    private ConsultaEstadio() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+    private ConsultaEstadio() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, Exception {
         initComponents();
         
         carregarJTable();
     }
     
-    public ConsultaEstadio (MenuPrincipal telaPrincipal) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+    public ConsultaEstadio (MenuPrincipal telaPrincipal) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, Exception {
         this();
         
         this.telaPrincipal = telaPrincipal;
     }
     
-    private void carregarJTable() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+    private void carregarJTable() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, Exception {
         ArrayList<Estadio> lista = RepositorioEstadio.getInstance().obterListaEstadio();
         
         DefaultTableModel modelo = new javax.swing.table.DefaultTableModel();
@@ -165,7 +165,9 @@ public class ConsultaEstadio extends javax.swing.JFrame {
             public void run() {
                 try {
                     new ConsultaEstadio().setVisible(true);
-                } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException ex) {
+                } catch (IllegalAccessException | ClassNotFoundException | SQLException ex) {
+                    Logger.getLogger(ConsultaEstadio.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (Exception ex) {
                     Logger.getLogger(ConsultaEstadio.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }

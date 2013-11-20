@@ -25,13 +25,12 @@ public class RepositorioCampeonato {
     
     // singleton
     
-    public static RepositorioCampeonato getInstance () {
-        if (instance == null) {
-            
-            instance = new RepositorioCampeonato();
-        }
-        
-        return instance;
+    public static RepositorioCampeonato getInstance() {
+            if (instance == null) {
+                
+                instance = new RepositorioCampeonato();
+            }
+            return instance;
     }
     public void cadastrarCampeonato (Campeonato camp) {
         
@@ -39,7 +38,7 @@ public class RepositorioCampeonato {
         listaCampeonato.add(camp);
     }
     
-    public ArrayList<Campeonato> obterListaCampeonato() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+    public ArrayList<Campeonato> obterListaCampeonato() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, Exception {
         CampeonatoDAO consulta = new CampeonatoDAO();
         listaCampeonato = consulta.select();
         return listaCampeonato;

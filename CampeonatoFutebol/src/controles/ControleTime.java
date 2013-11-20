@@ -12,8 +12,10 @@ import campeonatofutebol.Time;
  */
 //<editor-fold defaultstate="collapsed" desc="Classe de controle Time">
 public class ControleTime {
+    @SuppressWarnings({"empty-statement", "null"})
     public boolean cadastrarTime (Time time){
         
+        @SuppressWarnings("UnusedAssignment")
         boolean result = false;
         
         if (time == null && time.getCodTime() != 0 &&

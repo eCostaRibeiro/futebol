@@ -154,7 +154,7 @@ public class CadastroJogador extends javax.swing.JInternalFrame {
                 joga.setNomeJogador(jnomeJogador.getText());
                 JogadorDAO jogadorDAO = new JogadorDAO(joga);
                 
-                    jogadorDAO.insert();
+                jogadorDAO.insert();
                 
                 JOptionPane.showMessageDialog (this, "Cadastrado com Sucesso!");
             }

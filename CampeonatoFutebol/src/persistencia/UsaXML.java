@@ -24,7 +24,7 @@ public class UsaXML {
     private UsuarioOracle usuario;
     
     
-    public void gravaXML(UsuarioOracle usuario){
+    public void gravaXML(UsuarioOracle usuario) throws Exception{
         XStream xstream = new XStream(new StaxDriver());
         
         try (PrintStream out = new PrintStream(arquivoXML)) {
@@ -36,21 +36,20 @@ public class UsaXML {
             out.print(xml);
             imprime("Arquivo gravado com sucesso!");
             
-        } catch (FileNotFoundException e) {
-            imprime("Arquivo não encontrado \n" + e.toString());
+        } catch (FileNotFoundException ex) {
+            throw new Exception ("Erro ConexaoOracle.getConnection\n"+ ex.getMessage());
         }
     }//fim GravaXML
     
-    public UsuarioOracle leituraXML(){
+    public UsuarioOracle leituraXML() throws Exception{
         try (BufferedReader leitura = new BufferedReader(new FileReader(arquivoXML))) {
             XStream xstream = new XStream(new StaxDriver());
             xstream.alias("usuarioOracle", UsuarioOracle.class);
             this.usuario = (UsuarioOracle)xstream.fromXML(leitura);
             return this.usuario;
             
-        }catch (Exception e){
-            imprime("Arquivo não encontrado \n" + e.toString());
-            return null;
+        }catch (Exception ex){
+            throw new Exception ("Erro ConexaoOracle.getConnection\n"+ ex.getMessage());
         }
         
     }//fim leituraXML

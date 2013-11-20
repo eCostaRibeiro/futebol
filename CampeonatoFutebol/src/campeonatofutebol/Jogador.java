@@ -2,7 +2,7 @@
 package campeonatofutebol;
 
 public class Jogador {
-    private final Time timeJogador;
+    private Time timeJogador;
     private Integer codJogador;
     private String nomeJogador;
     
@@ -41,10 +41,12 @@ public class Jogador {
         this.nomeJogador = nomeJogador;
     }
     
-    
-    //</editor-fold>
-
     public Time getTimeJogador() {
         return timeJogador;
     }
+    
+    public void setTimeJogador(Time time){
+        this.timeJogador = time;
+    }
+    //</editor-fold>
 }

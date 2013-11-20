@@ -149,6 +149,8 @@ public class CadastroTime extends javax.swing.JFrame {
             JOptionPane.showMessageDialog (this, "Cadastrado com Sucesso!");
         }catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException ex) {
             Logger.getLogger(CadastroJogador.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(CadastroTime.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
             telaAnterior.setEnabled(true);
             this.dispose();

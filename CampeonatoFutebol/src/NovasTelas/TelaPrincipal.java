@@ -7,14 +7,19 @@
 package NovasTelas;
 
 import NovasTelas.Cadastros.CadastroArbitro;
+import NovasTelas.Cadastros.CadastroCampeonato;
+import NovasTelas.Cadastros.CadastroEstadio;
 import NovasTelas.consultas.ConsultaCampeonato;
 import NovasTelas.consultas.ConsultaArbitro;
 import NovasTelas.consultas.ConsultaEstadio;
 import NovasTelas.consultas.ConsultaJogador;
 import NovasTelas.consultas.ConsultaTime;
 import java.sql.SQLException;
+import NovasTelas.Cadastros.CadastroJogador;
+import NovasTelas.Cadastros.CadastroTime;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -122,15 +127,35 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu1.setText("Cadastros");
 
         jMenuItem4.setText("Campeonato");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem4);
 
         jMenuItem7.setText("Time");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem7);
 
         jMenuItem8.setText("Jogador");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem8);
 
         jMenuItem10.setText("Estádio");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem10);
 
         jMenuItem9.setText("Árbitro");
@@ -167,9 +192,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
             jDesktopPane1.add(consJog);
             consJog.show();
         } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+             JOptionPane.showMessageDialog(this, ex.toString());
         }catch (Exception ex) {
-            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+             JOptionPane.showMessageDialog(this, ex.toString());
         }
         
     }//GEN-LAST:event_jMenuItem1ActionPerformed
@@ -181,9 +206,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
             jDesktopPane1.add(consTime);
             consTime.show();
         }catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+             JOptionPane.showMessageDialog(this, ex.toString());
         }catch (Exception ex) {
-            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, ex.toString());
         }
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
@@ -195,9 +220,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
             jDesktopPane1.add(consCamp);
             consCamp.show();
         }catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+             JOptionPane.showMessageDialog(this, ex.toString());
         }catch (Exception ex) {
-            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+             JOptionPane.showMessageDialog(this, ex.toString());
         }
         
     }//GEN-LAST:event_jMenuItem3ActionPerformed
@@ -210,6 +235,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
             jDesktopPane1.add(consArb);
             consArb.show();
         }catch (ClassNotFoundException | IllegalAccessException | InstantiationException | SQLException ex) {
+             JOptionPane.showMessageDialog(this, ex.toString());
+        } catch (Exception ex) {
             Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jMenuItem5ActionPerformed
@@ -222,9 +249,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
             jDesktopPane1.add(consEst);
             consEst.show();
         }catch (ClassNotFoundException | IllegalAccessException | InstantiationException | SQLException ex) {
-            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+             JOptionPane.showMessageDialog(this, ex.toString());
         } catch (Exception ex) {
-            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+             JOptionPane.showMessageDialog(this, ex.toString());
         }
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
@@ -236,9 +263,53 @@ public class TelaPrincipal extends javax.swing.JFrame {
             jDesktopPane1.add(cadArbitro);
             cadArbitro.show();
         } catch (Exception ex) {
-            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, ex.toString());
         }
     }//GEN-LAST:event_jMenuItem9ActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        CadastroJogador cadJog;
+        try {
+            cadJog = new CadastroJogador(jDesktopPane1);
+            jDesktopPane1.add(cadJog);
+            cadJog.show();
+        }catch (Exception ex) {
+             JOptionPane.showMessageDialog(this, ex.toString());
+        }
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        CadastroCampeonato cadCamp;
+        try {
+            cadCamp = new CadastroCampeonato(jDesktopPane1);
+            jDesktopPane1.add(cadCamp);
+            cadCamp.show();
+        }catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.toString());
+        }
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        CadastroTime cadTime;
+        try {
+            cadTime = new CadastroTime(jDesktopPane1);
+            jDesktopPane1.add(cadTime);
+            cadTime.show();
+        }catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.toString());
+        }
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        CadastroEstadio cadEst;
+        try {
+            cadEst = new CadastroEstadio(jDesktopPane1);
+            jDesktopPane1.add(cadEst);
+            cadEst.show();
+        }catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.toString());
+        }
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     /**
      * @param args the command line arguments

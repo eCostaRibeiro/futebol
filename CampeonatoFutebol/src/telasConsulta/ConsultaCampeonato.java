@@ -23,20 +23,20 @@ public class ConsultaCampeonato extends javax.swing.JFrame {
     /**
      * Creates new form ConsultaCampeonato
      */
-    private ConsultaCampeonato() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+    private ConsultaCampeonato() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, Exception {
         initComponents();
         
         carregarJTable();
     }
     
-    public ConsultaCampeonato (MenuPrincipal telaPrincipal) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+    public ConsultaCampeonato (MenuPrincipal telaPrincipal) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, Exception {
         this();
         
         this.telaPrincipal = telaPrincipal;
     }
 
        
-    private void carregarJTable() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+    private void carregarJTable() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, Exception {
         ArrayList<Campeonato> lista = RepositorioCampeonato.getInstance().obterListaCampeonato();
         
         DefaultTableModel modelo = new javax.swing.table.DefaultTableModel();
@@ -176,7 +176,9 @@ public class ConsultaCampeonato extends javax.swing.JFrame {
             public void run() {
                 try {
                     new ConsultaCampeonato().setVisible(true);
-                } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException ex) {
+                } catch (IllegalAccessException | ClassNotFoundException | SQLException ex) {
+                    Logger.getLogger(ConsultaCampeonato.class.getName()).log(Level.SEVERE, null, ex);
+                }catch (Exception ex) {
                     Logger.getLogger(ConsultaCampeonato.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }

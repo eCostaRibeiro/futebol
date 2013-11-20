@@ -173,7 +173,7 @@ public class CriarCampeonato extends javax.swing.JFrame {
             if (controle.cadastrarCampeonato(camp)){
                 camp.setCodCamp((Integer.parseInt(jcodCamp.getText())));
                 camp.setNomeCamp(jnomeCamp.getText());
-                camp.setAnoCamp(Integer.parseInt(janoCamp.getText()));
+                camp.setAnoCamp(janoCamp.getText());
             }
 
             CampeonatoDAO campeonatoDAO = new CampeonatoDAO();
@@ -181,6 +181,8 @@ public class CriarCampeonato extends javax.swing.JFrame {
             JOptionPane.showMessageDialog (this, "Cadastrado com Sucesso!");
         }catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException ex) {
             Logger.getLogger(CadastroJogador.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(CriarCampeonato.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
             telaAnterior.setEnabled(true);
             this.dispose();

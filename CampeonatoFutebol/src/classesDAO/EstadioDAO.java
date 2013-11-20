@@ -32,33 +32,30 @@ public class EstadioDAO {
     }
     
     
-    public void insert()throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException{
+    public void insert()throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, Exception{
         try(Connection dbConecta = new ConexaoOracle().getConnection(); PreparedStatement insert = dbConecta.prepareStatement("insert into estadio values (?, ?)")){
             insert.setInt(1, this.estadio.getCodEstadio());
             insert.setString(2, this.estadio.getNomeEstadio());
             insert.executeQuery();
             
-        }catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) {
-            System.out.println("Nao foi possivel Conectar! \n"+ e.getMessage());
+        }catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException ex) {
+            throw new Exception ("Erro EstadioDAO.Insert\n" + ex.getMessage());
         }
         
     }
     
-    public ArrayList<Estadio> select() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException{
+    public ArrayList<Estadio> select() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, Exception{
         try (Connection dbConecta = new ConexaoOracle().getConnection();
                 Statement select = dbConecta.createStatement();
                 ResultSet tupla = select.executeQuery("select * from estadio order by codigo"))
         {
-            
-            
             while (tupla.next()){
 			Estadio est = new Estadio(tupla.getInt("codigo"), tupla.getString("nome"));
                         this.listaEstadio.add(est);
 		}
             return this.listaEstadio;
         } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException ex) {
-            System.out.println("erro ao selecionar dados. \n" + ex.getMessage());
-            return null;
+            throw new Exception ("Erro EstadioDAO.Select\n" + ex.getMessage());
         }
     }
 }

@@ -157,6 +157,8 @@ public class CadastroArbitro extends javax.swing.JFrame {
             
         }catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException ex) {
             Logger.getLogger(CadastroArbitro.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(CadastroArbitro.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
             telaAnterior.setEnabled(true);
             this.dispose();

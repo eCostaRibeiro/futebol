@@ -35,5 +35,4 @@ public class Arbitro {
         this.nomeArbitro = nomeArbitro;
     }
     //</editor-fold>
-  
 }

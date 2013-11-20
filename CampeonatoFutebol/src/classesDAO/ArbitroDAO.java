@@ -33,20 +33,23 @@ public class ArbitroDAO {
     }
     
     
-    public void insert()throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException{
+    public void insert()throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, Exception{
         try(Connection dbConecta = new ConexaoOracle().getConnection();
-                PreparedStatement insert = dbConecta.prepareStatement("insert into arbitro values (?, ?)")){
+                PreparedStatement insert = dbConecta.prepareStatement("insert into arbitro values (?, ?)"))
+        {
             insert.setInt(1, this.arbitro.getCodArbitro());
             insert.setString(2, this.arbitro.getNomeArbitro());
             insert.executeQuery();
             
-        }catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) {
-            System.out.println("Nao foi possivel Conectar! \n"+ e.getMessage());
+        }catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException ex) {
+            throw new Exception ("Erro ArbitroDAO.Insert\n"+ ex.getMessage());
+        }catch (Exception ex){
+            throw new Exception ("Erro ArbitroDAO.Insert\n"+ ex.getMessage());
         }
         
     }
     
-    public ArrayList<Arbitro> select() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException{
+    public ArrayList<Arbitro> select() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, Exception{
         try (Connection dbConecta = new ConexaoOracle().getConnection();
                 Statement select = dbConecta.createStatement();
                 ResultSet tupla = select.executeQuery("select * from arbitro order by codigo"))
@@ -59,8 +62,7 @@ public class ArbitroDAO {
 		}
             return this.listaArbitro;
         } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException ex) {
-            System.out.println("erro ao selecionar dados. \n" + ex.getMessage());
-            return null;
+            throw new Exception ("Erro Erro ArbitroDAO.Select\n"+ ex.getMessage());
         }
     }
 }//fim da classe

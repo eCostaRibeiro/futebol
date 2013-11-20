@@ -13,19 +13,25 @@ import campeonatofutebol.Campeonato;
 //<editor-fold defaultstate="collapsed" desc="Controle da Classe Campeonato">
 public class ControleCampeonato {
     
-    @SuppressWarnings("empty-statement")
-    public boolean cadastrarCampeonato (Campeonato camp){
+    @SuppressWarnings({"empty-statement", "null"})
+    public boolean cadastrarCampeonato (Campeonato camp) throws Exception{
         
-        boolean result = false;
-        
-        if (camp == null && camp.getCodCamp()!= 0 &&
-                camp.getNomeCamp().length()>0 && camp.getAnoCamp() != 0); {
-        
-        repositorios.RepositorioCampeonato.getInstance().cadastrarCampeonato(camp);
-        
-        result = true;   
-    }
-                return result;
+        try {
+            @SuppressWarnings("UnusedAssignment")
+            boolean result = false;
+            
+            if (camp == null && camp.getCodCamp() != 0
+                    && camp.getNomeCamp().length() > 0 && camp.getAnoCamp().length() > 0);
+            {
+                
+                repositorios.RepositorioCampeonato.getInstance().cadastrarCampeonato(camp);
+                
+                result = true;                
+            }
+            return result;
+        } catch (Exception ex) {
+            throw new Exception ("Erro ControleCampeonato.CadastrarCampeonato\n" + ex.getMessage());
+        }
     }
 }
 //</editor-fold>

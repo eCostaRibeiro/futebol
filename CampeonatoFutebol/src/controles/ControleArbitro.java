@@ -12,8 +12,10 @@ import campeonatofutebol.Arbitro;
  */
 //<editor-fold defaultstate="collapsed" desc="Classe de controle Arbitro">
 public class ControleArbitro {
+    @SuppressWarnings({"empty-statement", "null"})
     public boolean cadastrarArbitro (Arbitro arb){
         
+        @SuppressWarnings("UnusedAssignment")
         boolean result = false;
         
         if (arb == null && arb.getCodArbitro()!= 0 &&

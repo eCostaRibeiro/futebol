@@ -10,8 +10,6 @@ import campeonatofutebol.Arbitro;
 import classesDAO.ArbitroDAO;
 import controles.ControleArbitro;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 
@@ -54,11 +52,6 @@ public class CadastroArbitro extends javax.swing.JInternalFrame {
         jLabel2.setText("Nome:");
 
         jcodArbitro.setToolTipText("Código Arbitro");
-        jcodArbitro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcodArbitroActionPerformed(evt);
-            }
-        });
 
         jnomeArbitro.setToolTipText("Nome do Arbitro");
 
@@ -95,7 +88,7 @@ public class CadastroArbitro extends javax.swing.JInternalFrame {
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jnomeArbitro, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,15 +105,11 @@ public class CadastroArbitro extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jcodArbitroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcodArbitroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jcodArbitroActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         //leitura dos campos
@@ -136,13 +125,16 @@ public class CadastroArbitro extends javax.swing.JInternalFrame {
             if (controle.cadastrarArbitro(arb)){
                 arb.setCodArbitro((Integer.parseInt(jcodArbitro.getText())));
                 arb.setNomeArbitro(jnomeArbitro.getText());
+                ArbitroDAO arbitroDB = new ArbitroDAO(arb);
+                arbitroDB.insert();
+                JOptionPane.showMessageDialog (this, "Cadastrado com Sucesso!");
             }
-            ArbitroDAO arbitroDB = new ArbitroDAO(arb);
-            arbitroDB.insert();
-            JOptionPane.showMessageDialog (this, "Cadastrado com Sucesso!");
+            
 
         }catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(CadastroArbitro.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
         }finally{
             this.dispose();
         }
