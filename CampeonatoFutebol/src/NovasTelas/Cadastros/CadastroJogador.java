@@ -21,6 +21,8 @@ import javax.swing.JOptionPane;
  */
 public class CadastroJogador extends javax.swing.JInternalFrame {
     private final JDesktopPane telaAnterior;
+    private Time time;
+    
 
     /**
      * Creates new form CadastroJogador
@@ -29,6 +31,7 @@ public class CadastroJogador extends javax.swing.JInternalFrame {
     public CadastroJogador(JDesktopPane jDPPrincipal) {
         initComponents();
         this.telaAnterior = jDPPrincipal;
+        this.time = new Time();
     }
 
     /**
@@ -144,10 +147,12 @@ public class CadastroJogador extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Integer codTime = Integer.parseInt(JCodTime.getText());
-        
+            
         try {
-            TimeDAO consultaTime = new TimeDAO();
-            JNomeTime.setText(consultaTime.selectCodigo(codTime).getNomeTime());
+            TimeDAO timeDAO = new TimeDAO();
+            this.time = timeDAO.selectCodigo(codTime);
+            
+            JNomeTime.setText(this.time.getNomeTime());
             jGravar.setEnabled(true);
             
         } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException ex) {
@@ -169,13 +174,11 @@ public class CadastroJogador extends javax.swing.JInternalFrame {
         
         try {
             Jogador jog = new Jogador();
-            TimeDAO timeDAO = new TimeDAO();
-            Time tme = new Time(timeDAO.selectCodigo(codTime));
             ControleJogador controle = new ControleJogador();
             JogadorDAO jogadorDAO;
             
             if (controle.cadastrarJogador(jog)){
-                jog.setTimeJogador(tme);
+                jog.setTimeJogador(this.time);
                 jog.setCodJogador(codJoga);
                 jog.setNomeJogador(nomeJoga);
                 jogadorDAO = new JogadorDAO(jog);

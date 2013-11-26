@@ -17,7 +17,7 @@ public class RepositorioTime {
     private static RepositorioTime instance;
     ArrayList<Time> listaTime;
     
-    private RepositorioTime() {
+    public RepositorioTime() {
         listaTime = new ArrayList<>();
     }
     

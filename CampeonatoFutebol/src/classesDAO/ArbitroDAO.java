@@ -62,7 +62,24 @@ public class ArbitroDAO {
 		}
             return this.listaArbitro;
         } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException ex) {
-            throw new Exception ("Erro Erro ArbitroDAO.Select\n"+ ex.getMessage());
+            throw new Exception ("Erro ArbitroDAO.Select\n"+ ex.getMessage());
         }
     }
+    
+     public Arbitro selectCodigo(Integer codigo) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, Exception{
+        try (Connection dbConecta = new ConexaoOracle().getConnection();
+                Statement select = dbConecta.createStatement();
+                ResultSet tupla = select.executeQuery("select codigo, nome from arbitro where codigo = " + codigo))
+        {           
+            tupla.next();
+                        
+            Arbitro juiz = new Arbitro(tupla.getInt("codigo"), tupla.getString("nome"));
+            
+            return juiz;
+            
+        } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException ex) {
+            throw new Exception ("Erro ArbitroDAO.SelectCodigo\n" + ex.getMessage());
+        }
+     }
+    
 }//fim da classe

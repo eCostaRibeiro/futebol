@@ -21,14 +21,14 @@ import persistencia.ConexaoOracle;
  */
 public class CampeonatoDAO {
     private Campeonato campeonato;
-    private ArrayList<Campeonato> listaCampeonato;
+    private ArrayList<Campeonato> lista;
 
     public CampeonatoDAO(Campeonato campeonato) {
         this.campeonato = campeonato;
     }
     
     public CampeonatoDAO(){
-        this.listaCampeonato = new ArrayList<>();
+        this.lista = new ArrayList<>();
     }
     
     
@@ -56,11 +56,26 @@ public class CampeonatoDAO {
         {           
             while (tupla.next()){
                 Campeonato camp = new Campeonato(tupla.getInt("codigo"), tupla.getString("nome"), tupla.getString("ano"));
-                this.listaCampeonato.add(camp);
+                this.lista.add(camp);
             }
-            return this.listaCampeonato;
+            return this.lista;
         } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException ex) {
             throw new Exception ("Erro CampeonatoDAO.select" + ex.getMessage());
         }
     }
+    
+    public Campeonato selectCodigo(Integer codigo) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, Exception{
+        try (Connection dbConecta = new ConexaoOracle().getConnection();
+                Statement select = dbConecta.createStatement();
+                ResultSet tupla = select.executeQuery("select * from campeonato where codigo = " + codigo))
+        {           
+            tupla.next();
+            Campeonato camp = new Campeonato(tupla.getInt("codigo"), tupla.getString("nome"), tupla.getString("ano"));
+                
+                    return camp;
+        } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException ex) {
+            throw new Exception ("Erro TimeDAO.SelectCodigo\n" + ex.getMessage());
+        }
+    }
+   
 }

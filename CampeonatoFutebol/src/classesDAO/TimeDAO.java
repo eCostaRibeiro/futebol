@@ -21,19 +21,19 @@ import persistencia.ConexaoOracle;
  */
 public class TimeDAO {
     private Time time;
-    private ArrayList<Time> listaTime;
+    private ArrayList<Time> lista;
 
     public TimeDAO(Time time) {
         this.time = time;
     }
     
     public TimeDAO(){
-        this.listaTime = new ArrayList<>();
+        this.lista = new ArrayList<>();
     }
     
     
     public void insert()throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, Exception{
-        try(Connection dbConecta = new ConexaoOracle().getConnection(); PreparedStatement insert = dbConecta.prepareStatement("insert into arbitro values (?, ?)")){
+        try(Connection dbConecta = new ConexaoOracle().getConnection(); PreparedStatement insert = dbConecta.prepareStatement("insert into equipe values (?, ?)")){
             insert.setInt(1, this.time.getCodTime());
             insert.setString(2, this.time.getNomeTime());
             insert.executeQuery();
@@ -51,25 +51,25 @@ public class TimeDAO {
         {           
             while (tupla.next()){
                 Time tme = new Time(tupla.getInt("codigo"), tupla.getString("nome"));
-                this.listaTime.add(tme);
+                this.lista.add(tme);
             }
-            return this.listaTime;
+            return this.lista;
         } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException ex) {
-            throw new Exception ("Erro Time.select\n" + ex.getMessage());
+            throw new Exception ("Erro TimeDAO.select\n" + ex.getMessage());
         }
     }
     
     public Time selectCodigo(Integer codigo) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, Exception{
         try (Connection dbConecta = new ConexaoOracle().getConnection();
                 Statement select = dbConecta.createStatement();
-                ResultSet tupla = select.executeQuery("select codigo, nome from equipe where codigo = "+ codigo + "order by codigo"))
+                ResultSet tupla = select.executeQuery("select codigo, nome from equipe where codigo = " + codigo))
         {           
             tupla.next();
             Time tme = new Time(tupla.getInt("codigo"), tupla.getString("nome"));
                 
                     return tme;
         } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException ex) {
-            throw new Exception ("Erro Time.SelectCodigo\n" + ex.getMessage());
+            throw new Exception ("Erro TimeDAO.SelectCodigo\n" + ex.getMessage());
         }
     }
 }

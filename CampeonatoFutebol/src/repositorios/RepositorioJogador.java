@@ -31,8 +31,8 @@ public class RepositorioJogador {
         
         return instance;
     }
+    
     public void cadastrarJogador (Jogador joga) {
-        
         //Fazer a lógica
         listaJogador.add(joga);
     }

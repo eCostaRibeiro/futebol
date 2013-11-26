@@ -9,6 +9,8 @@ package NovasTelas;
 import NovasTelas.Cadastros.CadastroArbitro;
 import NovasTelas.Cadastros.CadastroCampeonato;
 import NovasTelas.Cadastros.CadastroEstadio;
+import NovasTelas.Cadastros.CadastroEstadioTime;
+import NovasTelas.Cadastros.CadastroJTC;
 import NovasTelas.consultas.ConsultaCampeonato;
 import NovasTelas.consultas.ConsultaArbitro;
 import NovasTelas.consultas.ConsultaEstadio;
@@ -16,7 +18,11 @@ import NovasTelas.consultas.ConsultaJogador;
 import NovasTelas.consultas.ConsultaTime;
 import java.sql.SQLException;
 import NovasTelas.Cadastros.CadastroJogador;
+import NovasTelas.Cadastros.CadastroRodadas;
 import NovasTelas.Cadastros.CadastroTime;
+import NovasTelas.consultas.ConsultaEstadioEquipe;
+import NovasTelas.consultas.ConsultaJogadorTimeCampeonato;
+import NovasTelas.consultas.ConsultaRodadas;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -54,12 +60,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem12 = new javax.swing.JMenuItem();
+        jMenuItem14 = new javax.swing.JMenuItem();
+        jMenuItem17 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
+        jMenuItem13 = new javax.swing.JMenuItem();
+        jMenuItem15 = new javax.swing.JMenuItem();
+        jMenuItem16 = new javax.swing.JMenuItem();
 
         jMenuItem11.setText("jMenuItem11");
 
@@ -122,6 +134,30 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem5);
 
+        jMenuItem12.setText("Estádio-Time");
+        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem12ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem12);
+
+        jMenuItem14.setText("Jogador-Time-Campeonato");
+        jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem14ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem14);
+
+        jMenuItem17.setText("Consulta Rodadas-Partidas");
+        jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem17ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem17);
+
         jMenuBar1.add(jMenu3);
 
         jMenu1.setText("Cadastros");
@@ -165,6 +201,30 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuItem9);
+
+        jMenuItem13.setText("Estádio-Time");
+        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem13ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem13);
+
+        jMenuItem15.setText("Jogador-Time-Campeonato");
+        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem15ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem15);
+
+        jMenuItem16.setText("Gerar Rodadas");
+        jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem16ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem16);
 
         jMenuBar1.add(jMenu1);
 
@@ -311,6 +371,80 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
+    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
+        ConsultaEstadioEquipe consEstTime;
+        
+        try {
+            consEstTime = new ConsultaEstadioEquipe(jDesktopPane1);
+            jDesktopPane1.add(consEstTime);
+            consEstTime.show();
+        }catch (ClassNotFoundException | IllegalAccessException | InstantiationException | SQLException ex) {
+             JOptionPane.showMessageDialog(this, ex.toString());
+        } catch (Exception ex) {
+             JOptionPane.showMessageDialog(this, ex.toString());
+        }
+    }//GEN-LAST:event_jMenuItem12ActionPerformed
+
+    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
+        CadastroEstadioTime cadEstTime;
+        
+        try {
+            cadEstTime = new CadastroEstadioTime(jDesktopPane1);
+            jDesktopPane1.add(cadEstTime);
+            cadEstTime.show();
+        } catch (Exception ex) {
+             JOptionPane.showMessageDialog(this, ex.toString());
+        }
+    }//GEN-LAST:event_jMenuItem13ActionPerformed
+
+    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
+        ConsultaJogadorTimeCampeonato consJTC;
+        
+        try {
+            consJTC = new ConsultaJogadorTimeCampeonato(jDesktopPane1);
+            jDesktopPane1.add(consJTC);
+            consJTC.show();
+        }catch (Exception ex) {
+             JOptionPane.showMessageDialog(this, ex.toString());
+        }
+    }//GEN-LAST:event_jMenuItem14ActionPerformed
+
+    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
+        CadastroJTC cadJTC;
+        
+        try {
+            cadJTC = new CadastroJTC(jDesktopPane1);
+            jDesktopPane1.add(cadJTC);
+            cadJTC.show();
+        }catch (Exception ex) {
+             JOptionPane.showMessageDialog(this, ex.toString());
+        }
+    }//GEN-LAST:event_jMenuItem15ActionPerformed
+
+    private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
+        CadastroRodadas cadRod;
+        
+        try {
+            cadRod = new CadastroRodadas(jDesktopPane1);
+            jDesktopPane1.add(cadRod);
+            cadRod.show();
+        }catch (Exception ex) {
+             JOptionPane.showMessageDialog(this, ex.toString());
+        }
+    }//GEN-LAST:event_jMenuItem16ActionPerformed
+
+    private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
+        ConsultaRodadas consRodadas;
+        
+        try {
+            consRodadas = new ConsultaRodadas(jDesktopPane1);
+            jDesktopPane1.add(consRodadas);
+            consRodadas.show();
+        }catch (Exception ex) {
+             JOptionPane.showMessageDialog(this, ex.toString());
+        }
+    }//GEN-LAST:event_jMenuItem17ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -349,6 +483,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
+    private javax.swing.JMenuItem jMenuItem12;
+    private javax.swing.JMenuItem jMenuItem13;
+    private javax.swing.JMenuItem jMenuItem14;
+    private javax.swing.JMenuItem jMenuItem15;
+    private javax.swing.JMenuItem jMenuItem16;
+    private javax.swing.JMenuItem jMenuItem17;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;

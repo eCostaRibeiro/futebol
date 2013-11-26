@@ -146,7 +146,7 @@ public class ConsultaTime extends javax.swing.JInternalFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
             this.carregarJTable();
-        } catch (IllegalAccessException | ClassNotFoundException | SQLException ex) {
+        }  catch (ClassNotFoundException | IllegalAccessException | InstantiationException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());

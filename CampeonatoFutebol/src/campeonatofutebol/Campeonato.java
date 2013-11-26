@@ -6,7 +6,7 @@ public class Campeonato {
     private String anoCamp;
     
 
-    //<editor-fold defaultstate="collapsed" desc="Construtor">
+    //<editor-fold defaultstate="expanded" desc="Construtor">
     public Campeonato(Integer codCamp, String nomeCamp, String anoCamp) {
         this.codCamp = codCamp;
         this.nomeCamp = nomeCamp;
@@ -14,7 +14,7 @@ public class Campeonato {
     }
     //</editor-fold>
 
-    //<editor-fold defaultstate="collapsed" desc="Construtor Genérico">
+    //<editor-fold defaultstate="expanded" desc="Construtor Genérico">
     public Campeonato() {
         this.codCamp = null;
         this.nomeCamp = null;

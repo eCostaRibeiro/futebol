@@ -20,17 +20,16 @@ import persistencia.ConexaoOracle;
  */
 public class JogadorDAO {
     private Jogador jogador;
-    private ArrayList<Jogador> listaJogador;
+    private ArrayList<Jogador> lista;
 
     public JogadorDAO(Jogador jogador) {
         this.jogador = jogador;
     }
     
     public JogadorDAO(){
-        this.listaJogador = new ArrayList<>();
+        this.lista = new ArrayList<>();
     }
-    
-    
+
     public void insert()throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, Exception{
         try(Connection dbConecta = new ConexaoOracle().getConnection();
                 PreparedStatement insert = dbConecta.prepareStatement("insert into jogador values (?, ?, ?)"))
@@ -40,14 +39,14 @@ public class JogadorDAO {
             insert.setString(3, this.jogador.getNomeJogador());
             insert.executeQuery();
         }catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException ex) {
-            throw new Exception ("Erro Jogador.insert\n " + ex.getMessage());
+            throw new Exception ("Erro JogadorDAO.insert\n " + ex.getMessage());
         }catch (Exception ex){
-            throw new Exception ("Erro ArbitroDAO.Insert\n"+ ex.getMessage());
+            throw new Exception ("Erro JogadorDAO.Insert\n"+ ex.getMessage());
         }
     }//fim insert
     
     
-    //parei aqui!!!!!!!!!!!!!!!;....................................................................................................................................................................................................
+    //select padrão
     public ArrayList<Jogador> select() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, Exception{
         try (Connection dbConecta = new ConexaoOracle().getConnection();
                 Statement select = dbConecta.createStatement();
@@ -57,15 +56,35 @@ public class JogadorDAO {
                         + "order by t.codigo asc, j.codigo asc")
                 )
         {
-            //Time timeJogador = new Time();
             TimeDAO timeDAO = new TimeDAO();
             while (tuplaJ.next()){
                 Jogador jog = new Jogador(timeDAO.selectCodigo(tuplaJ.getInt("equipe_codigo")), tuplaJ.getInt("codigo"), tuplaJ.getString("nome"));
-                this.listaJogador.add(jog);
+                this.lista.add(jog);
             }
-            return this.listaJogador;
+            return this.lista;
         } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException ex) {
             throw new Exception ("Erro Jogador.select\n " + ex.getMessage());
         }
-    }    
+    }// Fim select
+    
+    public Jogador selectCodigo(Integer codigo) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, Exception{
+        try (Connection dbConecta = new ConexaoOracle().getConnection();
+                Statement select = dbConecta.createStatement();
+                ResultSet tupla = select.executeQuery("select equipe_codigo, codigo, nome "
+                        + "from jogador "
+                        + "where codigo = " + codigo
+                        + "order by equipe_codigo asc, codigo asc")
+                )
+        {           
+            tupla.next();
+            TimeDAO timeDAO = new TimeDAO();
+            
+            Jogador joga = new Jogador(timeDAO.selectCodigo(tupla.getInt("equipe_codigo")),
+                    tupla.getInt("codigo"), tupla.getString("nome"));
+                
+                    return joga;
+        } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException ex) {
+            throw new Exception ("Erro JogadorDAO.SelectCodigo\n" + ex.getMessage());
+        }
+    }//FIM selectCodigo
 }

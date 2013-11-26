@@ -141,7 +141,7 @@ public class ConsultaEstadio extends javax.swing.JInternalFrame {
         } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         } catch (Exception ex) {
-            Logger.getLogger(ConsultaEstadio.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, ex.getMessage());
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 

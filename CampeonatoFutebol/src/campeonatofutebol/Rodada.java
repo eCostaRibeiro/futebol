@@ -1,14 +1,17 @@
 
 package campeonatofutebol;
 
+import java.util.ArrayList;
+
 public class Rodada {
     private Integer codRodada;
     private Campeonato oCampeonato;
+    private ArrayList<Partida> partidas;
 
     //<editor-fold defaultstate="collapsed" desc="Construtor">
-    public Rodada(Integer codRodada, Campeonato oCampeonato) {
-        this.codRodada = codRodada;
+    public Rodada(Campeonato oCampeonato, Integer codRodada) {
         this.oCampeonato = oCampeonato;
+        this.codRodada = codRodada;
     }
     //</editor-fold>
     
@@ -28,6 +31,13 @@ public class Rodada {
     public void setoCampeonato(Campeonato oCampeonato) {
         this.oCampeonato = oCampeonato;
     }
-    //</editor-fold>
-        
+    public void setPartidas(ArrayList<Partida> lista){
+        this.partidas = lista;
+    }
+    
+    public ArrayList<Partida> getPartidas() {
+        return partidas;
+    }
+    
+    //</editor-fold> 
 }

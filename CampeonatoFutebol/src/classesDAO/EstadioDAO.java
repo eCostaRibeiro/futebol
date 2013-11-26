@@ -58,4 +58,18 @@ public class EstadioDAO {
             throw new Exception ("Erro EstadioDAO.Select\n" + ex.getMessage());
         }
     }
+    
+    public Estadio selectCodigo(Integer codigo) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, Exception{
+        try (Connection dbConecta = new ConexaoOracle().getConnection();
+                Statement select = dbConecta.createStatement();
+                ResultSet tupla = select.executeQuery("select codigo, nome from estadio where codigo = "+ codigo))
+        {           
+            tupla.next();
+            Estadio est = new Estadio(tupla.getInt("codigo"), tupla.getString("nome"));
+                
+                    return est;
+        } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException ex) {
+            throw new Exception ("Erro EstadioDAO.SelectCodigo\n" + ex.getMessage());
+        }
+    }
 }
